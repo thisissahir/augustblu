@@ -1,21 +1,1013 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<title>AUGUST BLU</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="colors_and_type.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>August Blu</title>
 <style>
-  html, body { margin: 0; background: var(--paper); }
-  body { padding-bottom: 96px; } /* room for fixed mini player */
-  * { box-sizing: border-box; }
-  button { font: inherit; }
-  a { text-decoration: none; color: inherit; }
-  @keyframes ab-marquee { from { transform: translateX(0); } to { transform: translateX(-33.33%); } }
+  /* ============================================================
+     AUGUST BLU — Windows 98 Desktop
+     Single-file. No dependencies. Authentic Win98 chrome.
+     ============================================================ */
+
+  :root{
+    --gray:#C0C0C0;
+    --gray-dark:#808080;
+    --gray-darker:#404040;
+    --white:#FFFFFF;
+    --black:#000000;
+    --navy:#000080;
+    --navy-light:#1084D0;
+    --desktop:#3A6EA5;            /* classic teal-blue Win98 wallpaper */
+    --text:#000000;
+    --shadow:#000000;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html,body{height:100%;overflow:hidden}
+
+  body{
+    font-family:"Pixelated MS Sans Serif","MS Sans Serif",Tahoma,Geneva,sans-serif;
+    font-size:11px;
+    background:#000000;
+    color:var(--text);
+    -webkit-font-smoothing:none;
+    user-select:none;
+    cursor:default;
+  }
+
+  /* faint scanline texture for CRT feel */
+  body::after{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+      0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 3px);
+    z-index:9999;
+  }
+
+  /* ---------- Bevel system (the core Win98 look) ---------- */
+  .raised{
+    border-top:2px solid var(--white);
+    border-left:2px solid var(--white);
+    border-right:2px solid var(--gray-darker);
+    border-bottom:2px solid var(--gray-darker);
+    box-shadow:inset -1px -1px 0 var(--gray-dark), inset 1px 1px 0 var(--gray);
+  }
+  .sunken{
+    border-top:2px solid var(--gray-darker);
+    border-left:2px solid var(--gray-darker);
+    border-right:2px solid var(--white);
+    border-bottom:2px solid var(--white);
+    box-shadow:inset 1px 1px 0 var(--gray-dark), inset -1px -1px 0 var(--gray);
+  }
+
+  /* ===================== WALLPAPER LAYER ===================== */
+  #wallpaper{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+    background:#000000;
+  }
+  /* retro perspective grid floor */
+  #wallpaper .grid-floor{
+    position:absolute;
+    left:50%; bottom:0;
+    width:200%; height:42%;
+    transform:translateX(-50%) perspective(340px) rotateX(68deg);
+    transform-origin:bottom center;
+    background-image:
+      linear-gradient(rgba(38,69,232,0.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(38,69,232,0.28) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:linear-gradient(to top, #000 0%, transparent 92%);
+            mask-image:linear-gradient(to top, #000 0%, transparent 92%);
+    animation:gridScroll 6s linear infinite;
+  }
+  @keyframes gridScroll{
+    from{ background-position:0 0,0 0; }
+    to  { background-position:0 44px,0 0; }
+  }
+  /* blue bloom behind the fork */
+  #wallpaper .bloom{
+    position:absolute;
+    left:50%; top:44%;
+    width:520px; height:520px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(38,69,232,0.30) 0%, rgba(38,69,232,0.10) 38%, transparent 66%);
+    animation:breathe 5s ease-in-out infinite;
+  }
+  @keyframes breathe{
+    0%,100%{ opacity:0.55; transform:translate(-50%,-50%) scale(1); }
+    50%    { opacity:0.9;  transform:translate(-50%,-50%) scale(1.12); }
+  }
+  /* resonance rings emanating from the pendant */
+  #wallpaper .ring{
+    position:absolute;
+    left:50%; top:60%;
+    width:120px; height:120px;
+    border:1.5px solid rgba(140,165,255,0.45);
+    border-radius:50%;
+    transform:translate(-50%,-50%) scale(0.2);
+    opacity:0;
+    animation:resonate 6s ease-out infinite;
+  }
+  #wallpaper .ring:nth-child(2){ animation-delay:2s; }
+  #wallpaper .ring:nth-child(3){ animation-delay:4s; }
+  @keyframes resonate{
+    0%  { transform:translate(-50%,-50%) scale(0.15); opacity:0; }
+    12% { opacity:0.7; }
+    100%{ transform:translate(-50%,-50%) scale(3.4); opacity:0; }
+  }
+  /* the logo itself */
+  #wallpaper .logo-fork{
+    position:absolute;
+    left:50%; top:44%;
+    transform:translate(-50%,-50%);
+    height:60%;
+    width:auto;
+    filter:drop-shadow(0 0 22px rgba(38,69,232,0.55));
+    animation:hum 5s ease-in-out infinite;
+  }
+  @keyframes hum{
+    0%,100%{ transform:translate(-50%,-50%) translateX(0); }
+    25%    { transform:translate(-50%,-50%) translateX(-0.8px); }
+    75%    { transform:translate(-50%,-50%) translateX(0.8px); }
+  }
+  /* drifting particles (echo the dots inside the droplet) */
+  #wallpaper .particle{
+    position:absolute;
+    background:rgba(180,200,255,0.85);
+    border-radius:50%;
+    box-shadow:0 0 6px rgba(140,165,255,0.8);
+    animation:drift linear infinite;
+  }
+  @keyframes drift{
+    0%  { transform:translateY(0) translateX(0); opacity:0; }
+    10% { opacity:0.9; }
+    90% { opacity:0.7; }
+    100%{ transform:translateY(-120px) translateX(var(--dx)); opacity:0; }
+  }
+  /* faint distant stars */
+  #wallpaper .stars{
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 78% 12%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 32% 70%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1px 1px at 88% 64%, rgba(255,255,255,0.45), transparent),
+      radial-gradient(1px 1px at 60% 30%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 8% 82%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 50% 88%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.35), transparent);
+    animation:twinkle 4s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle{ from{opacity:0.4;} to{opacity:0.9;} }
+
+  @media (max-width:600px){
+    #wallpaper .logo-fork{ height:38%; top:30%; }
+    #wallpaper .bloom{ top:30%; width:340px;height:340px; }
+    #wallpaper .ring{ top:42%; }
+  }
+
+  /* ===================== DESKTOP ICONS ===================== */
+  #desktop{
+    position:absolute;
+    top:0;left:0;right:0;bottom:30px;
+    padding:14px;
+    z-index:1;
+  }
+  .icon-grid{
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    align-content:flex-start;
+    gap:6px;
+    height:100%;
+  }
+  .desk-icon{
+    width:78px;
+    padding:6px 4px;
+    text-align:center;
+    cursor:pointer;
+    border:1px dotted transparent;
+  }
+  .desk-icon:hover .label{ text-decoration:underline; }
+  .desk-icon.selected{
+    border:1px dotted #FFFFFF;
+    background:rgba(0,0,128,0.35);
+  }
+  .desk-icon .glyph{
+    width:42px;height:42px;
+    margin:0 auto 4px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:30px;
+    filter:drop-shadow(1px 1px 0 rgba(0,0,0,0.4));
+  }
+  .desk-icon .label{
+    color:#FFFFFF;
+    font-size:11px;
+    line-height:1.25;
+    text-shadow:1px 1px 0 rgba(0,0,0,0.7);
+    padding:0 2px;
+  }
+  .desk-icon.selected .label{ background:var(--navy); }
+
+  /* ===================== WINDOWS ===================== */
+  .window{
+    position:absolute;
+    min-width:300px;
+    background:var(--gray);
+    display:none;
+    flex-direction:column;
+    padding:3px;
+  }
+  .window.open{ display:flex; }
+
+  .titlebar{
+    height:20px;
+    background:linear-gradient(90deg, var(--navy) 0%, var(--navy-light) 100%);
+    display:flex;align-items:center;
+    padding:0 2px 0 4px;
+    cursor:move;
+    flex-shrink:0;
+  }
+  .titlebar.inactive{
+    background:linear-gradient(90deg, var(--gray-dark) 0%, #B5B5B5 100%);
+  }
+  .titlebar .title{
+    color:#FFFFFF;
+    font-weight:bold;
+    font-size:11px;
+    flex:1;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:flex;align-items:center;gap:5px;
+  }
+  .titlebar .title .ticon{ font-size:13px; }
+  .tb-btns{ display:flex; gap:2px; }
+  .tb-btn{
+    width:16px;height:14px;
+    background:var(--gray);
+    border-top:1px solid var(--white);
+    border-left:1px solid var(--white);
+    border-right:1px solid var(--gray-darker);
+    border-bottom:1px solid var(--gray-darker);
+    font-size:9px;
+    line-height:11px;
+    text-align:center;
+    font-family:Marlett,"MS Sans Serif",sans-serif;
+    font-weight:bold;
+    cursor:pointer;
+    color:#000;
+    display:flex;align-items:center;justify-content:center;
+    padding-bottom:2px;
+  }
+  .tb-btn:active{
+    border-top:1px solid var(--gray-darker);
+    border-left:1px solid var(--gray-darker);
+    border-right:1px solid var(--white);
+    border-bottom:1px solid var(--white);
+  }
+
+  .menubar{
+    display:flex;
+    gap:0;
+    padding:1px 2px;
+    font-size:11px;
+    border-bottom:1px solid var(--gray-dark);
+    flex-shrink:0;
+  }
+  .menubar span{ padding:2px 7px; cursor:default; }
+  .menubar span:hover{ background:var(--navy); color:#fff; }
+
+  .win-body{
+    background:var(--gray);
+    padding:3px;
+    flex:1;
+    overflow:auto;
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+  }
+  .win-content{
+    background:var(--white);
+    flex:1;
+    padding:14px 16px;
+    overflow:auto;
+    line-height:1.55;
+    font-size:12px;
+    color:#000;
+  }
+  .win-content.gray{ background:var(--gray); }
+
+  .statusbar{
+    display:flex;
+    gap:3px;
+    padding:2px;
+    flex-shrink:0;
+  }
+  .status-cell{
+    background:var(--gray);
+    padding:2px 6px;
+    font-size:11px;
+    color:var(--gray-darker);
+  }
+  .status-cell.grow{ flex:1; }
+
+  /* content helpers */
+  .win-content h2{ font-size:15px; margin-bottom:8px; color:var(--navy); }
+  .win-content h3{ font-size:13px; margin:12px 0 5px; }
+  .win-content p{ margin-bottom:9px; }
+  .win-content a{ color:#0000EE; }
+  .placeholder-note{
+    background:#FFFFCC;
+    border:1px solid #E0C000;
+    padding:8px 10px;
+    margin-top:10px;
+    font-size:11px;
+    color:#665500;
+  }
+
+  /* gallery / demos grids */
+  .thumb-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(90px,1fr));
+    gap:10px;
+    margin-top:6px;
+  }
+  .thumb{
+    aspect-ratio:1;
+    background:linear-gradient(135deg,#9aa8c8,#5c6f9c);
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+    color:#fff;
+    cursor:pointer;
+  }
+  .thumb:hover{ outline:2px dotted var(--navy); }
+
+  .file-row{
+    display:flex;align-items:center;gap:8px;
+    padding:3px 5px;
+    cursor:pointer;
+  }
+  .file-row:hover{ background:var(--navy); color:#fff; }
+  .file-row .fi{ font-size:16px; }
+
+  .list-item{
+    display:flex;align-items:flex-start;gap:8px;
+    padding:8px 6px;
+    border-bottom:1px solid #E5E5E5;
+  }
+  .list-item .dot{ font-size:14px; }
+  .list-item .meta{ font-size:10px; color:#888; }
+
+  /* buttons */
+  .btn{
+    background:var(--gray);
+    border-top:2px solid var(--white);
+    border-left:2px solid var(--white);
+    border-right:2px solid var(--gray-darker);
+    border-bottom:2px solid var(--gray-darker);
+    padding:4px 14px;
+    font-size:11px;
+    font-family:inherit;
+    cursor:pointer;
+    min-width:70px;
+  }
+  .btn:active{
+    border-top:2px solid var(--gray-darker);
+    border-left:2px solid var(--gray-darker);
+    border-right:2px solid var(--white);
+    border-bottom:2px solid var(--white);
+    padding:5px 13px 3px 15px;
+  }
+  .btn-row{ display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
+
+  /* ===================== TASKBAR ===================== */
+  #taskbar{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:30px;
+    background:var(--gray);
+    display:flex;align-items:center;
+    padding:2px;
+    gap:4px;
+    z-index:5000;
+  }
+  #start-btn{
+    height:23px;
+    padding:0 8px 0 5px;
+    display:flex;align-items:center;gap:5px;
+    font-weight:bold;
+    font-size:11px;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  #start-btn .logo{
+    font-size:15px;
+    filter:drop-shadow(1px 1px 0 rgba(0,0,0,0.3));
+  }
+  #start-btn.active{
+    border-top:2px solid var(--gray-darker)!important;
+    border-left:2px solid var(--gray-darker)!important;
+    border-right:2px solid var(--white)!important;
+    border-bottom:2px solid var(--white)!important;
+  }
+  .tb-divider{ width:2px; height:22px;
+    border-left:1px solid var(--gray-dark);
+    border-right:1px solid var(--white);
+    flex-shrink:0; }
+
+  #task-items{ flex:1; display:flex; gap:3px; overflow:hidden; }
+  .task-item{
+    height:23px;
+    min-width:130px;
+    max-width:160px;
+    padding:0 8px;
+    display:flex;align-items:center;gap:6px;
+    font-size:11px;
+    cursor:pointer;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+  .task-item.active{
+    border-top:2px solid var(--gray-darker);
+    border-left:2px solid var(--gray-darker);
+    border-right:2px solid var(--white);
+    border-bottom:2px solid var(--white);
+    box-shadow:inset 1px 1px 0 var(--gray-dark);
+    background:repeating-conic-gradient(var(--gray) 0% 25%, #c8c8c8 0% 50%) 50%/4px 4px;
+    font-weight:bold;
+  }
+  .task-item .ti-ico{ font-size:13px; flex-shrink:0; }
+  .task-item .ti-label{ overflow:hidden;text-overflow:ellipsis; }
+
+  #tray{
+    height:23px;
+    display:flex;align-items:center;
+    padding:0 8px;
+    gap:8px;
+    flex-shrink:0;
+  }
+  #clock{ font-size:11px; }
+
+  /* ===================== START MENU ===================== */
+  #start-menu{
+    position:absolute;
+    bottom:30px;left:2px;
+    width:200px;
+    background:var(--gray);
+    padding:3px;
+    display:none;
+    z-index:6000;
+  }
+  #start-menu.open{ display:flex; }
+  .sm-sidebar{
+    width:26px;
+    background:linear-gradient(180deg,var(--navy),var(--navy-light));
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    text-align:center;
+    color:#fff;
+    font-weight:bold;
+    font-size:15px;
+    padding:8px 0;
+    letter-spacing:1px;
+    flex-shrink:0;
+  }
+  .sm-items{ flex:1; }
+  .sm-item{
+    display:flex;align-items:center;gap:9px;
+    padding:5px 8px;
+    font-size:12px;
+    cursor:pointer;
+  }
+  .sm-item:hover{ background:var(--navy); color:#fff; }
+  .sm-item .smi{ font-size:18px; width:22px;text-align:center; }
+  .sm-sep{ height:1px; margin:3px 2px;
+    border-top:1px solid var(--gray-dark);
+    border-bottom:1px solid var(--white); }
+
+  /* ===================== BOOT / WELCOME ===================== */
+  #welcome{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:420px;
+    z-index:3000;
+  }
+  .welcome-hero{
+    background:linear-gradient(135deg,#2e5c8a,#5a8fd0);
+    color:#fff;
+    padding:26px 22px;
+    text-align:center;
+  }
+  .welcome-hero .big{
+    font-size:30px;
+    font-weight:bold;
+    letter-spacing:1px;
+    text-shadow:2px 2px 0 rgba(0,0,0,0.3);
+    margin-bottom:4px;
+  }
+  .welcome-hero .sub{ font-size:12px; opacity:0.85; }
+
+  @media (max-width:600px){
+    body{ background-size:auto 38%; background-position:center 30%; }
+    .window{ min-width:0; width:92vw!important; left:4vw!important; }
+    #welcome{ width:92vw; }
+    .task-item{ min-width:46px; }
+    .task-item .ti-label{ display:none; }
+  }
 </style>
 </head>
 <body>
-<div id="root"></div>
-<script src="app.js" defer></script>
+
+<!-- ===================== WALLPAPER ===================== -->
+<div id="wallpaper">
+  <div class="stars"></div>
+  <div class="grid-floor"></div>
+  <div class="bloom"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <svg class="logo-fork" viewBox="0 0 480 700" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="August Blu">
+    <defs>
+      <radialGradient id="drop" cx="40%" cy="32%" r="75%">
+        <stop offset="0%" stop-color="#8aa2ff"/>
+        <stop offset="45%" stop-color="#3a5bff"/>
+        <stop offset="100%" stop-color="#1b2fb0"/>
+      </radialGradient>
+      <linearGradient id="fork" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="100%" stop-color="#c7d2ff"/>
+      </linearGradient>
+    </defs>
+    <!-- tuning-fork U (prongs up, joined at base) -->
+    <path d="M150 60 L150 360 Q150 472 240 472 Q330 472 330 360 L330 60"
+          stroke="url(#fork)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- pendant thread -->
+    <line x1="240" y1="472" x2="240" y2="520" stroke="#9fb4ff" stroke-width="5"/>
+    <!-- blue droplet pendant -->
+    <path d="M240 512 C 210 558 198 596 198 622 A 42 42 0 1 0 282 622 C 282 596 270 558 240 512 Z"
+          fill="url(#drop)"/>
+    <!-- specular highlight -->
+    <ellipse cx="224" cy="600" rx="11" ry="16" fill="rgba(255,255,255,0.55)"/>
+    <!-- inner dots echoed by drifting particles -->
+    <circle cx="252" cy="632" r="5" fill="rgba(200,214,255,0.85)"/>
+    <circle cx="236" cy="648" r="3.5" fill="rgba(200,214,255,0.7)"/>
+  </svg>
+  <div id="particles"></div>
+</div>
+
+
+<!-- ===================== DESKTOP ===================== -->
+<div id="desktop">
+  <div class="icon-grid" id="iconGrid">
+    <div class="desk-icon" data-win="demos">
+      <div class="glyph">🖥️</div><div class="label">Demos</div>
+    </div>
+    <div class="desk-icon" data-win="gallery">
+      <div class="glyph">🖼️</div><div class="label">Gallery</div>
+    </div>
+    <div class="desk-icon" data-win="memories">
+      <div class="glyph">📷</div><div class="label">Memories</div>
+    </div>
+    <div class="desk-icon" data-win="journal">
+      <div class="glyph">📓</div><div class="label">Journal</div>
+    </div>
+    <div class="desk-icon" data-win="documents">
+      <div class="glyph">📁</div><div class="label">Documents</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== WELCOME WINDOW ===================== -->
+<div class="window raised open" id="welcome" data-win="welcome" style="z-index:3000">
+  <div class="titlebar">
+    <div class="title"><span class="ticon">✴️</span> Welcome to August Blu</div>
+    <div class="tb-btns">
+      <div class="tb-btn close" data-close="welcome">✕</div>
+    </div>
+  </div>
+  <div class="win-body">
+    <div class="welcome-hero">
+      <div class="big">AUGUST BLU</div>
+      <div class="sub">collective consciousness, made tangible</div>
+    </div>
+    <div class="win-content" style="flex:none">
+      <p>Double-click an icon on the desktop to explore. Five rooms:
+      <b>Demos</b>, <b>Gallery</b>, <b>Memories</b>, <b>Journal</b>, and <b>Documents</b>.</p>
+      <div class="btn-row">
+        <button class="btn" data-close="welcome">Enter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DEMOS ===================== -->
+<div class="window raised" id="win-demos" data-win="demos" style="width:460px;top:70px;left:120px">
+  <div class="titlebar">
+    <div class="title"><span class="ticon">🖥️</span> Demos</div>
+    <div class="tb-btns">
+      <div class="tb-btn" data-min="demos">_</div>
+      <div class="tb-btn" data-max="demos">□</div>
+      <div class="tb-btn close" data-close="demos">✕</div>
+    </div>
+  </div>
+  <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+  <div class="win-body">
+    <div class="win-content">
+      <h2>Demos</h2>
+      <p>Works in progress. Tracks, sketches, sound experiments.</p>
+      <div class="thumb-grid">
+        <div class="thumb">▶</div><div class="thumb">▶</div><div class="thumb">▶</div>
+        <div class="thumb">▶</div><div class="thumb">▶</div><div class="thumb">▶</div>
+      </div>
+      <div class="placeholder-note">Placeholder — wire each tile to an audio player / track later.</div>
+    </div>
+    <div class="statusbar">
+      <div class="status-cell sunken grow">6 object(s)</div>
+      <div class="status-cell sunken">August Blu</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== GALLERY ===================== -->
+<div class="window raised" id="win-gallery" data-win="gallery" style="width:480px;top:90px;left:160px">
+  <div class="titlebar">
+    <div class="title"><span class="ticon">🖼️</span> Gallery</div>
+    <div class="tb-btns">
+      <div class="tb-btn" data-min="gallery">_</div>
+      <div class="tb-btn" data-max="gallery">□</div>
+      <div class="tb-btn close" data-close="gallery">✕</div>
+    </div>
+  </div>
+  <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+  <div class="win-body">
+    <div class="win-content">
+      <h2>Gallery</h2>
+      <p>Visual work. Art, design, stills.</p>
+      <div class="thumb-grid">
+        <div class="thumb">🎨</div><div class="thumb">🎨</div><div class="thumb">🎨</div>
+        <div class="thumb">🎨</div><div class="thumb">🎨</div><div class="thumb">🎨</div>
+        <div class="thumb">🎨</div><div class="thumb">🎨</div>
+      </div>
+      <div class="placeholder-note">Placeholder — drop real images into a grid + lightbox later.</div>
+    </div>
+    <div class="statusbar">
+      <div class="status-cell sunken grow">8 image(s)</div>
+      <div class="status-cell sunken">August Blu</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MEMORIES ===================== -->
+<div class="window raised" id="win-memories" data-win="memories" style="width:440px;top:110px;left:200px">
+  <div class="titlebar">
+    <div class="title"><span class="ticon">📷</span> Memories</div>
+    <div class="tb-btns">
+      <div class="tb-btn" data-min="memories">_</div>
+      <div class="tb-btn" data-max="memories">□</div>
+      <div class="tb-btn close" data-close="memories">✕</div>
+    </div>
+  </div>
+  <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+  <div class="win-body">
+    <div class="win-content">
+      <h2>Memories</h2>
+      <p>Moments. People. Places that mattered.</p>
+      <div class="list-item"><span class="dot">🔵</span><div><b>Untitled memory one</b><div class="meta">placeholder · date</div></div></div>
+      <div class="list-item"><span class="dot">🔵</span><div><b>Untitled memory two</b><div class="meta">placeholder · date</div></div></div>
+      <div class="list-item"><span class="dot">🔵</span><div><b>Untitled memory three</b><div class="meta">placeholder · date</div></div></div>
+      <div class="placeholder-note">Placeholder — turn into a photo + caption feed later.</div>
+    </div>
+    <div class="statusbar">
+      <div class="status-cell sunken grow">3 item(s)</div>
+      <div class="status-cell sunken">August Blu</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== JOURNAL ===================== -->
+<div class="window raised" id="win-journal" data-win="journal" style="width:500px;top:80px;left:140px">
+  <div class="titlebar">
+    <div class="title"><span class="ticon">📓</span> Journal — Notepad</div>
+    <div class="tb-btns">
+      <div class="tb-btn" data-min="journal">_</div>
+      <div class="tb-btn" data-max="journal">□</div>
+      <div class="tb-btn close" data-close="journal">✕</div>
+    </div>
+  </div>
+  <div class="menubar"><span>File</span><span>Edit</span><span>Search</span><span>Help</span></div>
+  <div class="win-body">
+    <div class="win-content" style="font-family:'Courier New',monospace;font-size:12px;line-height:1.7">
+      <p>— entry 001 —</p>
+      <p>This is where the writing goes. Thoughts, lyrics, notes to self.
+      The journal reads like a plain text file open in Notepad.</p>
+      <p>&nbsp;</p>
+      <p>Placeholder text. Replace with real entries, or wire to a
+      markdown feed later.</p>
+      <p>&nbsp;</p>
+      <p>_</p>
+    </div>
+    <div class="statusbar">
+      <div class="status-cell sunken grow">Ln 1, Col 1</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DOCUMENTS ===================== -->
+<div class="window raised" id="win-documents" data-win="documents" style="width:440px;top:120px;left:240px">
+  <div class="titlebar">
+    <div class="title"><span class="ticon">📁</span> Documents</div>
+    <div class="tb-btns">
+      <div class="tb-btn" data-min="documents">_</div>
+      <div class="tb-btn" data-max="documents">□</div>
+      <div class="tb-btn close" data-close="documents">✕</div>
+    </div>
+  </div>
+  <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+  <div class="win-body">
+    <div class="win-content">
+      <h2>Documents</h2>
+      <div class="file-row"><span class="fi">📄</span> readme.txt</div>
+      <div class="file-row"><span class="fi">📄</span> about.doc</div>
+      <div class="file-row"><span class="fi">📄</span> press_kit.pdf</div>
+      <div class="file-row"><span class="fi">📄</span> contact.txt</div>
+      <div class="file-row"><span class="fi">📁</span> archive</div>
+      <div class="placeholder-note">Placeholder — link each file to real downloads / pages later.</div>
+    </div>
+    <div class="statusbar">
+      <div class="status-cell sunken grow">5 object(s)</div>
+      <div class="status-cell sunken">August Blu</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== START MENU ===================== -->
+<div id="start-menu" class="raised">
+  <div class="sm-sidebar">August&nbsp;Blu</div>
+  <div class="sm-items">
+    <div class="sm-item" data-open="demos"><span class="smi">🖥️</span> Demos</div>
+    <div class="sm-item" data-open="gallery"><span class="smi">🖼️</span> Gallery</div>
+    <div class="sm-item" data-open="memories"><span class="smi">📷</span> Memories</div>
+    <div class="sm-item" data-open="journal"><span class="smi">📓</span> Journal</div>
+    <div class="sm-item" data-open="documents"><span class="smi">📁</span> Documents</div>
+    <div class="sm-sep"></div>
+    <div class="sm-item" data-open="welcome"><span class="smi">✴️</span> About August Blu</div>
+    <div class="sm-item" id="sm-shutdown"><span class="smi">⏻</span> Shut Down...</div>
+  </div>
+</div>
+
+<!-- ===================== TASKBAR ===================== -->
+<div id="taskbar" class="raised">
+  <div id="start-btn" class="raised"><span class="logo">✴️</span> Start</div>
+  <div class="tb-divider"></div>
+  <div id="task-items"></div>
+  <div id="tray" class="sunken">
+    <span id="clock">12:00 AM</span>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   WINDOW MANAGER
+   ============================================================ */
+const WINS = ["demos","gallery","memories","journal","documents","welcome"];
+const TITLES = {
+  demos:"🖥️ Demos", gallery:"🖼️ Gallery", memories:"📷 Memories",
+  journal:"📓 Journal", documents:"📁 Documents", welcome:"✴️ Welcome"
+};
+let zTop = 100;
+const openState = {};   // name -> true/false
+const minState  = {};   // name -> minimized?
+
+function el(name){ return document.getElementById(name==="welcome"?"welcome":"win-"+name); }
+
+function focusWin(name){
+  const w = el(name);
+  if(!w) return;
+  zTop++; w.style.zIndex = zTop;
+  document.querySelectorAll(".titlebar").forEach(t=>t.classList.add("inactive"));
+  const tb = w.querySelector(".titlebar");
+  if(tb) tb.classList.remove("inactive");
+  renderTasks(name);
+}
+
+function openWin(name){
+  const w = el(name);
+  if(!w) return;
+  w.classList.add("open");
+  openState[name]=true;
+  minState[name]=false;
+  focusWin(name);
+  renderTasks(name);
+}
+
+function closeWin(name){
+  const w = el(name);
+  if(!w) return;
+  w.classList.remove("open");
+  openState[name]=false;
+  minState[name]=false;
+  renderTasks();
+}
+
+function minWin(name){
+  const w = el(name);
+  if(!w) return;
+  w.classList.remove("open");
+  minState[name]=true;
+  renderTasks();
+}
+
+const maxState={};
+function maxWin(name){
+  const w = el(name);
+  if(!w) return;
+  if(!maxState[name]){
+    w.dataset.prev = JSON.stringify({
+      top:w.style.top,left:w.style.left,width:w.style.width,height:w.style.height
+    });
+    w.style.top="0"; w.style.left="0";
+    w.style.width="100vw"; w.style.height="calc(100vh - 30px)";
+    maxState[name]=true;
+  } else {
+    const p = JSON.parse(w.dataset.prev||"{}");
+    w.style.top=p.top; w.style.left=p.left;
+    w.style.width=p.width; w.style.height=p.height||"";
+    maxState[name]=false;
+  }
+  focusWin(name);
+}
+
+/* ============================================================
+   TASKBAR BUTTONS
+   ============================================================ */
+function renderTasks(activeName){
+  const bar = document.getElementById("task-items");
+  bar.innerHTML="";
+  WINS.forEach(name=>{
+    if(name==="welcome") return; // keep welcome out of taskbar clutter unless open
+    if(openState[name] || minState[name]){
+      const item=document.createElement("div");
+      item.className="task-item raised"+((openState[name]&&name===activeName)?" active":"");
+      item.innerHTML=`<span class="ti-ico">${TITLES[name].split(" ")[0]}</span><span class="ti-label">${TITLES[name].split(" ").slice(1).join(" ")}</span>`;
+      item.onclick=()=>{
+        if(minState[name]){ openWin(name); }
+        else if(name===activeName){ minWin(name); }
+        else { focusWin(name); el(name).classList.add("open"); }
+      };
+      bar.appendChild(item);
+    }
+  });
+  // welcome shown in taskbar only while open
+  if(openState["welcome"]){
+    const item=document.createElement("div");
+    item.className="task-item raised"+(activeName==="welcome"?" active":"");
+    item.innerHTML=`<span class="ti-ico">✴️</span><span class="ti-label">Welcome</span>`;
+    item.onclick=()=>focusWin("welcome");
+    bar.appendChild(item);
+  }
+}
+
+/* ============================================================
+   DESKTOP ICON SELECTION + DOUBLE CLICK
+   ============================================================ */
+document.querySelectorAll(".desk-icon").forEach(ic=>{
+  ic.addEventListener("click",e=>{
+    document.querySelectorAll(".desk-icon").forEach(x=>x.classList.remove("selected"));
+    ic.classList.add("selected");
+    e.stopPropagation();
+  });
+  ic.addEventListener("dblclick",()=>openWin(ic.dataset.win));
+});
+document.getElementById("desktop").addEventListener("click",()=>{
+  document.querySelectorAll(".desk-icon").forEach(x=>x.classList.remove("selected"));
+});
+
+/* ============================================================
+   TITLE-BAR CONTROLS
+   ============================================================ */
+document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();closeWin(b.dataset.close);}));
+document.querySelectorAll("[data-min]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();minWin(b.dataset.min);}));
+document.querySelectorAll("[data-max]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();maxWin(b.dataset.max);}));
+
+/* focus on any window mousedown */
+document.querySelectorAll(".window").forEach(w=>{
+  w.addEventListener("mousedown",()=>focusWin(w.dataset.win));
+});
+
+/* ============================================================
+   DRAGGABLE WINDOWS
+   ============================================================ */
+document.querySelectorAll(".window").forEach(w=>{
+  const tb = w.querySelector(".titlebar");
+  if(!tb) return;
+  let dragging=false, ox=0, oy=0;
+  tb.addEventListener("mousedown",e=>{
+    if(e.target.classList.contains("tb-btn")) return;
+    if(maxState[w.dataset.win]) return;
+    dragging=true;
+    const r=w.getBoundingClientRect();
+    ox=e.clientX-r.left; oy=e.clientY-r.top;
+    w.style.transform="none"; // disable centering once dragged (welcome)
+    w.style.top=r.top+"px"; w.style.left=r.left+"px";
+    document.body.style.cursor="move";
+    e.preventDefault();
+  });
+  window.addEventListener("mousemove",e=>{
+    if(!dragging) return;
+    let nx=e.clientX-ox, ny=e.clientY-oy;
+    ny=Math.max(0,Math.min(ny,window.innerHeight-60));
+    nx=Math.max(-w.offsetWidth+60,Math.min(nx,window.innerWidth-60));
+    w.style.left=nx+"px"; w.style.top=ny+"px";
+  });
+  window.addEventListener("mouseup",()=>{ dragging=false; document.body.style.cursor="default"; });
+
+  // touch
+  tb.addEventListener("touchstart",e=>{
+    if(e.target.classList.contains("tb-btn")) return;
+    if(maxState[w.dataset.win]) return;
+    const t=e.touches[0], r=w.getBoundingClientRect();
+    ox=t.clientX-r.left; oy=t.clientY-r.top; dragging=true;
+    w.style.transform="none"; w.style.top=r.top+"px"; w.style.left=r.left+"px";
+  },{passive:true});
+  window.addEventListener("touchmove",e=>{
+    if(!dragging) return;
+    const t=e.touches[0];
+    let nx=t.clientX-ox, ny=t.clientY-oy;
+    ny=Math.max(0,Math.min(ny,window.innerHeight-60));
+    w.style.left=nx+"px"; w.style.top=ny+"px";
+  },{passive:true});
+  window.addEventListener("touchend",()=>dragging=false);
+});
+
+/* ============================================================
+   START MENU
+   ============================================================ */
+const startBtn=document.getElementById("start-btn");
+const startMenu=document.getElementById("start-menu");
+function toggleStart(force){
+  const open = force!==undefined?force:!startMenu.classList.contains("open");
+  startMenu.classList.toggle("open",open);
+  startBtn.classList.toggle("active",open);
+}
+startBtn.addEventListener("click",e=>{e.stopPropagation();toggleStart();});
+document.addEventListener("click",()=>toggleStart(false));
+startMenu.addEventListener("click",e=>e.stopPropagation());
+document.querySelectorAll(".sm-item[data-open]").forEach(it=>{
+  it.addEventListener("click",()=>{openWin(it.dataset.open);toggleStart(false);});
+});
+document.getElementById("sm-shutdown").addEventListener("click",()=>{
+  toggleStart(false);
+  if(confirm("It is now safe to turn off your computer.\n\nReload August Blu?")) location.reload();
+});
+
+/* ============================================================
+   CLOCK
+   ============================================================ */
+function tick(){
+  const d=new Date();
+  let h=d.getHours(), m=d.getMinutes();
+  const ap=h>=12?"PM":"AM";
+  h=h%12; if(h===0)h=12;
+  m=m<10?"0"+m:m;
+  document.getElementById("clock").textContent=`${h}:${m} ${ap}`;
+}
+tick(); setInterval(tick,10000);
+
+
+/* ============================================================
+   WALLPAPER PARTICLES (echo the droplet dots, drifting up)
+   ============================================================ */
+(function(){
+  const box=document.getElementById("particles");
+  const N=22;
+  for(let i=0;i<N;i++){
+    const p=document.createElement("div");
+    p.className="particle";
+    const size=1+Math.random()*3;
+    p.style.width=size+"px";
+    p.style.height=size+"px";
+    p.style.left=(Math.random()*100)+"%";
+    p.style.top=(55+Math.random()*40)+"%";
+    p.style.setProperty("--dx",(Math.random()*40-20)+"px");
+    p.style.animationDuration=(7+Math.random()*9)+"s";
+    p.style.animationDelay=(-Math.random()*12)+"s";
+    box.appendChild(p);
+  }
+})();
+
+/* welcome starts focused */
+focusWin("welcome");
+renderTasks("welcome");
+</script>
 </body>
 </html>
