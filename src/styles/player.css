@@ -199,3 +199,85 @@ input[type=range].ap-range::-moz-range-thumb{
   border-radius:50%; }
 .pfv-b:active{ border-top:2px solid var(--gray-darker); border-left:2px solid var(--gray-darker); border-right:2px solid var(--white); border-bottom:2px solid var(--white); }
 .pfv-count{ margin-left:auto; font-size:11px; color:var(--gray-darker); }
+
+/* ===================== FREEBIES ===================== */
+.free-list{ margin-top:6px; }
+.free-row{ display:flex; align-items:center; gap:10px; padding:7px 6px; border-bottom:1px solid #e8e8e8; }
+.free-ico{ font-size:20px; width:26px; text-align:center; }
+.free-meta{ flex:1; min-width:0; }
+.free-title{ font-size:12px; font-weight:bold; }
+.free-sub{ font-size:10px; color:#888; }
+.free-dl{
+  font-size:11px; text-decoration:none; color:#000; background:var(--gray);
+  padding:3px 12px; cursor:pointer;
+  border-top:2px solid var(--white); border-left:2px solid var(--white);
+  border-right:2px solid var(--gray-darker); border-bottom:2px solid var(--gray-darker);
+}
+.free-dl:active{ border-top:2px solid var(--gray-darker); border-left:2px solid var(--gray-darker); border-right:2px solid var(--white); border-bottom:2px solid var(--white); }
+
+/* ===================== BULLETIN — MINI (on wallpaper) ===================== */
+#bb-mini{
+  position:absolute; top:18px; right:18px; z-index:2;   /* above wallpaper, below windows/taskbar */
+  cursor:pointer; width:150px;
+}
+.bb-mini-frame{
+  background:#8a5a2b;
+  border:6px solid #6b4420;
+  border-radius:3px;
+  padding:6px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.5), inset 0 0 18px rgba(0,0,0,0.35);
+  background-image:radial-gradient(rgba(0,0,0,0.12) 1px, transparent 1px);
+  background-size:5px 5px;
+  transition:transform .12s ease;
+}
+#bb-mini:hover .bb-mini-frame{ transform:scale(1.04); }
+.bb-mini-title{ font-size:11px; font-weight:bold; color:#fff; text-shadow:1px 1px 0 rgba(0,0,0,.5); margin-bottom:5px; }
+.bb-mini-notes{ display:flex; flex-direction:column; gap:5px; }
+.bb-mini-hint{ background:#fff7a8; font-size:11px; padding:8px; text-align:center; transform:rotate(-2deg); box-shadow:1px 2px 4px rgba(0,0,0,.3); }
+#bb-mini .bb-note{ font-size:9px; padding:6px 6px 5px; }
+#bb-mini .bb-note-from{ font-size:8px; }
+
+/* sticky notes (shared mini + full) */
+.bb-note{
+  position:relative;
+  padding:14px 12px 10px;
+  box-shadow:1px 3px 7px rgba(0,0,0,0.35);
+  font-family:'Comic Sans MS','Marker Felt',cursive;
+  color:#222;
+}
+.bb-pin{ position:absolute; top:4px; left:50%; transform:translateX(-50%); width:10px; height:10px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #ff7b7b, #c01818); box-shadow:0 1px 2px rgba(0,0,0,.5); }
+.bb-note-text{ font-size:12px; line-height:1.35; word-break:break-word; white-space:pre-wrap; }
+.bb-note-from{ font-size:10px; text-align:right; margin-top:6px; opacity:.7; }
+
+/* ===================== BULLETIN — FULL (overlay) ===================== */
+#bb-full{ position:fixed; inset:0; z-index:9400; display:none; align-items:center; justify-content:center; }
+#bb-full.open{ display:flex; }
+#bb-full .bb-shade{ position:absolute; inset:0; background:rgba(0,0,0,0.7); }
+.bb-full-win{ position:relative; width:min(620px,94vw); padding:3px; }
+.bb-full-body{ background:var(--gray); padding:6px; display:flex; flex-direction:column; gap:6px; }
+.bb-cork{
+  background:#9a6a35;
+  background-image:radial-gradient(rgba(0,0,0,0.1) 1px, transparent 1px);
+  background-size:6px 6px;
+  border:8px solid #6b4420; border-radius:3px;
+  padding:14px;
+  min-height:240px; max-height:46vh; overflow:auto;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:14px;
+  box-shadow:inset 0 0 26px rgba(0,0,0,0.4);
+}
+.bb-empty{ grid-column:1/-1; text-align:center; color:#f0e0c8; font-size:12px; padding:40px 10px; }
+.bb-compose{ display:flex; flex-direction:column; gap:5px; }
+.bb-input{
+  font-family:inherit; font-size:12px; padding:5px 7px; background:#fff;
+  border-top:2px solid var(--gray-darker); border-left:2px solid var(--gray-darker);
+  border-right:2px solid var(--white); border-bottom:2px solid var(--white);
+}
+.bb-textarea{ resize:vertical; min-height:54px; }
+.bb-compose-row{ display:flex; align-items:center; gap:10px; }
+.bb-status{ flex:1; font-size:11px; color:#0a5a0a; }
+
+@media (max-width:600px){
+  #bb-mini{ width:120px; top:10px; right:10px; }
+  .bb-cork{ grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); }
+}

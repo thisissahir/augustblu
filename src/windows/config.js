@@ -5,6 +5,7 @@
 import { TRACKS } from "./tracks.js";
 import { JOURNAL } from "./journal.js";
 import { ROLLS } from "./memories.js";
+import { FREEBIES, FREEBIE_ICON } from "./freebies.js";
 
 const demoTiles = TRACKS.map((t, i) => `
   <div class="demo-card" data-track="${i}">
@@ -41,6 +42,13 @@ const rollFolders = ROLLS.map((r) => `
       : `<div class="mem-folder-icon">📁</div>`}
     <div class="mem-folder-name">${r.name}</div>
     <div class="mem-folder-count">${r.photos.length} item(s)</div>
+  </div>`).join("");
+
+const freebieRows = FREEBIES.map((x) => `
+  <div class="free-row">
+    <span class="free-ico">${FREEBIE_ICON[x.type] || "📦"}</span>
+    <div class="free-meta"><div class="free-title">${x.title}</div><div class="free-sub">${x.meta}</div></div>
+    <a class="free-dl" href="${x.file}" download>Download</a>
   </div>`).join("");
 
 export const WINDOWS = [
@@ -109,6 +117,17 @@ export const WINDOWS = [
       <div class="file-row"><span class="fi">📄</span> contact.txt</div>
       <div class="file-row"><span class="fi">📁</span> archive</div>
       <div class="placeholder-note">Placeholder — link each file to real downloads / pages later.</div>`,
+  },
+  {
+    id: "freebies", icon: "🎁", title: "Freebies",
+    width: 440, top: 130, left: 270, showOnDesktop: true,
+    menu: ["File", "Edit", "View", "Help"],
+    status: [`${FREEBIES.length} file(s)`, "August Blu"],
+    body: `
+      <h2>Freebies</h2>
+      <p>Free to take. Songs, snippets, clips.</p>
+      <div class="free-list">${freebieRows}</div>
+      <div class="placeholder-note">Drop files into public/assets/freebies/ and list them in freebies.js</div>`,
   },
   /* The media player — not on the desktop grid; opened from Demos tiles + Start menu */
   {

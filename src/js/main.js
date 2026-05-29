@@ -10,6 +10,7 @@ import { initDesktop } from "./desktop.js";
 import { initParticles } from "./wallpaper.js";
 import { initAudioPlayer } from "./audioPlayer.js";
 import { initMemories } from "./memories.js";
+import { initBulletin } from "./bulletin.js";
 
 function boot() {
   // build DOM from config
@@ -25,6 +26,7 @@ function boot() {
   initParticles();
   initAudioPlayer();
   initMemories();
+  initBulletin();
   startClock();
 
   // welcome focused on load
