@@ -519,8 +519,34 @@
 
   @media (max-width:600px){
     body{ background-size:auto 38%; background-position:center 30%; }
-    .window{ min-width:0; width:92vw!important; left:4vw!important; }
-    #welcome{ width:92vw; }
+
+    /* app windows: full-width, fixed gutter, capped height so the body scrolls
+       instead of the window running off the bottom of the screen */
+    .window:not(#welcome){
+      min-width:0;
+      width:92vw!important;
+      left:4vw!important;
+      max-width:92vw;
+      max-height:78vh;
+    }
+
+    /* welcome popup must stay centred. The generic rule above can't touch it,
+       and #welcome wins specificity over .window so its own left/transform hold. */
+    #welcome{
+      width:92vw!important;
+      left:50%!important;
+      top:46%!important;
+      transform:translate(-50%,-50%)!important;
+      max-height:84vh;
+    }
+
+    /* bigger tap targets for window chrome */
+    .titlebar{ height:28px; }
+    .titlebar .title{ font-size:12px; }
+    .tb-btn{ width:24px; height:22px; font-size:12px; line-height:18px; }
+
+    .menubar span{ padding:5px 9px; }
+
     .task-item{ min-width:46px; }
     .task-item .ti-label{ display:none; }
   }
