@@ -349,6 +349,29 @@
     cursor:pointer;
   }
   .thumb:hover{ outline:2px dotted var(--navy); }
+  .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* lightbox for gallery */
+  #lightbox{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,0.88);
+    display:none; align-items:center; justify-content:center;
+    z-index:9000; cursor:zoom-out;
+  }
+  #lightbox.open{ display:flex; }
+  #lightbox img{
+    max-width:92vw; max-height:86vh;
+    box-shadow:0 0 0 3px #fff, 0 0 46px rgba(38,69,232,0.6);
+  }
+  #lightbox .lb-close{
+    position:absolute; top:12px; right:16px;
+    width:34px; height:30px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--gray);
+    border-top:2px solid var(--white); border-left:2px solid var(--white);
+    border-right:2px solid var(--gray-darker); border-bottom:2px solid var(--gray-darker);
+    font-size:14px; color:#000; cursor:pointer;
+  }
 
   .file-row{
     display:flex;align-items:center;gap:8px;
@@ -655,14 +678,17 @@
       <h2>Gallery</h2>
       <p>Visual work. Art, design, stills.</p>
       <div class="thumb-grid">
-        <div class="thumb">🎨</div><div class="thumb">🎨</div><div class="thumb">🎨</div>
-        <div class="thumb">🎨</div><div class="thumb">🎨</div><div class="thumb">🎨</div>
-        <div class="thumb">🎨</div><div class="thumb">🎨</div>
+        <div class="thumb" data-full="gallery/full/01.jpg"><img src="gallery/thumb/01.jpg" alt="August Blu — 1" loading="lazy"></div>
+        <div class="thumb" data-full="gallery/full/02.jpg"><img src="gallery/thumb/02.jpg" alt="August Blu — 2" loading="lazy"></div>
+        <div class="thumb" data-full="gallery/full/03.jpg"><img src="gallery/thumb/03.jpg" alt="August Blu — 3" loading="lazy"></div>
+        <div class="thumb" data-full="gallery/full/04.jpg"><img src="gallery/thumb/04.jpg" alt="August Blu — 4" loading="lazy"></div>
+        <div class="thumb" data-full="gallery/full/05.jpg"><img src="gallery/thumb/05.jpg" alt="August Blu — 5" loading="lazy"></div>
+        <div class="thumb" data-full="gallery/full/06.jpg"><img src="gallery/thumb/06.jpg" alt="August Blu — 6" loading="lazy"></div>
+        <div class="thumb" data-full="gallery/full/07.jpg"><img src="gallery/thumb/07.jpg" alt="August Blu — 7" loading="lazy"></div>
       </div>
-      <div class="placeholder-note">Placeholder — drop real images into a grid + lightbox later.</div>
     </div>
     <div class="statusbar">
-      <div class="status-cell sunken grow">8 image(s)</div>
+      <div class="status-cell sunken grow">7 image(s)</div>
       <div class="status-cell sunken">August Blu</div>
     </div>
   </div>
@@ -764,6 +790,12 @@
     <div class="sm-item" data-open="welcome"><span class="smi">✴️</span> About August Blu</div>
     <div class="sm-item" id="sm-shutdown"><span class="smi">⏻</span> Shut Down...</div>
   </div>
+</div>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div id="lightbox">
+  <div class="lb-close">✕</div>
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 <!-- ===================== TASKBAR ===================== -->
@@ -1004,6 +1036,18 @@ tick(); setInterval(tick,10000);
     p.style.animationDelay=(-Math.random()*12)+"s";
     box.appendChild(p);
   }
+})();
+
+/* gallery lightbox */
+(function(){
+  const lb=document.getElementById("lightbox");
+  const lbi=document.getElementById("lightbox-img");
+  function close(){ lb.classList.remove("open"); lbi.src=""; }
+  document.querySelectorAll(".thumb[data-full]").forEach(t=>{
+    t.addEventListener("click",e=>{ e.stopPropagation(); lbi.src=t.dataset.full; lb.classList.add("open"); });
+  });
+  lb.addEventListener("click", close);
+  document.addEventListener("keydown", e=>{ if(e.key==="Escape" && lb.classList.contains("open")) close(); });
 })();
 
 /* welcome starts focused */
