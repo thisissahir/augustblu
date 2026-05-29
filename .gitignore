@@ -1,0 +1,6 @@
+# Local tooling / editor
+.claude/
+
+# Large source imagery — not used by the site yet (brand reference assets).
+# Remove these lines if you want the raw PNGs tracked in the repo.
+*.png
