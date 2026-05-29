@@ -1,0 +1,9 @@
+/* main.css — imports all style modules in cascade order */
+@import "./base.css";
+@import "./wallpaper.css";
+@import "./desktop.css";
+@import "./windows.css";
+@import "./taskbar.css";
+@import "./startmenu.css";
+@import "./welcome.css";
+@import "./player.css";

@@ -1,6 +1,19 @@
-# Local tooling / editor
+# Editor / local tooling
 .claude/
 
-# Large source imagery — not used by the site yet (brand reference assets).
-# Remove these lines if you want the raw PNGs tracked in the repo.
-*.png
+# Node / Vite
+node_modules/
+dist/
+.vercel/
+*.log
+.DS_Store
+
+# Local reference assets in this working folder — NOT part of the site.
+# (The site's real assets live under public/assets and ARE tracked.)
+/Gallery/
+/Memories/
+/August Blu Design System*/
+/media/
+hf_*.png
+white look*.png
+*.zip

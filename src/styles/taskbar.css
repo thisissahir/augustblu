@@ -1,0 +1,68 @@
+/* ===================== TASKBAR ===================== */
+  #taskbar{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:30px;
+    background:var(--gray);
+    display:flex;align-items:center;
+    padding:2px;
+    gap:4px;
+    z-index:5000;
+  }
+  #start-btn{
+    height:23px;
+    padding:0 8px 0 5px;
+    display:flex;align-items:center;gap:5px;
+    font-weight:bold;
+    font-size:11px;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  #start-btn .logo{
+    font-size:15px;
+    filter:drop-shadow(1px 1px 0 rgba(0,0,0,0.3));
+  }
+  #start-btn.active{
+    border-top:2px solid var(--gray-darker)!important;
+    border-left:2px solid var(--gray-darker)!important;
+    border-right:2px solid var(--white)!important;
+    border-bottom:2px solid var(--white)!important;
+  }
+  .tb-divider{ width:2px; height:22px;
+    border-left:1px solid var(--gray-dark);
+    border-right:1px solid var(--white);
+    flex-shrink:0; }
+
+  #task-items{ flex:1; display:flex; gap:3px; overflow:hidden; }
+  .task-item{
+    height:23px;
+    min-width:130px;
+    max-width:160px;
+    padding:0 8px;
+    display:flex;align-items:center;gap:6px;
+    font-size:11px;
+    cursor:pointer;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+  .task-item.active{
+    border-top:2px solid var(--gray-darker);
+    border-left:2px solid var(--gray-darker);
+    border-right:2px solid var(--white);
+    border-bottom:2px solid var(--white);
+    box-shadow:inset 1px 1px 0 var(--gray-dark);
+    background:repeating-conic-gradient(var(--gray) 0% 25%, #c8c8c8 0% 50%) 50%/4px 4px;
+    font-weight:bold;
+  }
+  .task-item .ti-ico{ font-size:13px; flex-shrink:0; }
+  .task-item .ti-label{ overflow:hidden;text-overflow:ellipsis; }
+
+  #tray{
+    height:23px;
+    display:flex;align-items:center;
+    padding:0 8px;
+    gap:8px;
+    flex-shrink:0;
+  }
+  #clock{ font-size:11px; }

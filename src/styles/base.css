@@ -1,0 +1,58 @@
+/* base.css — variables, bevel system, body, scanlines */
+/* ============================================================
+     AUGUST BLU — Windows 98 Desktop
+     Single-file. No dependencies. Authentic Win98 chrome.
+     ============================================================ */
+
+  :root{
+    --gray:#C0C0C0;
+    --gray-dark:#808080;
+    --gray-darker:#404040;
+    --white:#FFFFFF;
+    --black:#000000;
+    --navy:#000080;
+    --navy-light:#1084D0;
+    --desktop:#3A6EA5;            /* classic teal-blue Win98 wallpaper */
+    --text:#000000;
+    --shadow:#000000;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html,body{height:100%;overflow:hidden}
+
+  body{
+    font-family:"Pixelated MS Sans Serif","MS Sans Serif",Tahoma,Geneva,sans-serif;
+    font-size:11px;
+    background:#000000;
+    color:var(--text);
+    -webkit-font-smoothing:none;
+    user-select:none;
+    cursor:default;
+  }
+
+  /* faint scanline texture for CRT feel */
+  body::after{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+      0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 3px);
+    z-index:9999;
+  }
+
+  /* ---------- Bevel system (the core Win98 look) ---------- */
+  .raised{
+    border-top:2px solid var(--white);
+    border-left:2px solid var(--white);
+    border-right:2px solid var(--gray-darker);
+    border-bottom:2px solid var(--gray-darker);
+    box-shadow:inset -1px -1px 0 var(--gray-dark), inset 1px 1px 0 var(--gray);
+  }
+  .sunken{
+    border-top:2px solid var(--gray-darker);
+    border-left:2px solid var(--gray-darker);
+    border-right:2px solid var(--white);
+    border-bottom:2px solid var(--white);
+    box-shadow:inset 1px 1px 0 var(--gray-dark), inset -1px -1px 0 var(--gray);
+  }

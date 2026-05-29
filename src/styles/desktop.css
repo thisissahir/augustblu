@@ -1,0 +1,42 @@
+/* ===================== DESKTOP ICONS ===================== */
+  #desktop{
+    position:absolute;
+    top:0;left:0;right:0;bottom:30px;
+    padding:14px;
+    z-index:1;
+  }
+  .icon-grid{
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    align-content:flex-start;
+    gap:6px;
+    height:100%;
+  }
+  .desk-icon{
+    width:78px;
+    padding:6px 4px;
+    text-align:center;
+    cursor:pointer;
+    border:1px dotted transparent;
+  }
+  .desk-icon:hover .label{ text-decoration:underline; }
+  .desk-icon.selected{
+    border:1px dotted #FFFFFF;
+    background:rgba(0,0,128,0.35);
+  }
+  .desk-icon .glyph{
+    width:42px;height:42px;
+    margin:0 auto 4px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:30px;
+    filter:drop-shadow(1px 1px 0 rgba(0,0,0,0.4));
+  }
+  .desk-icon .label{
+    color:#FFFFFF;
+    font-size:11px;
+    line-height:1.25;
+    text-shadow:1px 1px 0 rgba(0,0,0,0.7);
+    padding:0 2px;
+  }
+  .desk-icon.selected .label{ background:var(--navy); }

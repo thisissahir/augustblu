@@ -1,0 +1,109 @@
+/* ===================== WALLPAPER LAYER ===================== */
+  #wallpaper{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+    background:#000000;
+  }
+  /* retro perspective grid floor */
+  #wallpaper .grid-floor{
+    position:absolute;
+    left:50%; bottom:0;
+    width:200%; height:42%;
+    transform:translateX(-50%) perspective(340px) rotateX(68deg);
+    transform-origin:bottom center;
+    background-image:
+      linear-gradient(rgba(38,69,232,0.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(38,69,232,0.28) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:linear-gradient(to top, #000 0%, transparent 92%);
+            mask-image:linear-gradient(to top, #000 0%, transparent 92%);
+    animation:gridScroll 6s linear infinite;
+  }
+  @keyframes gridScroll{
+    from{ background-position:0 0,0 0; }
+    to  { background-position:0 44px,0 0; }
+  }
+  /* blue bloom behind the fork */
+  #wallpaper .bloom{
+    position:absolute;
+    left:50%; top:44%;
+    width:520px; height:520px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(38,69,232,0.30) 0%, rgba(38,69,232,0.10) 38%, transparent 66%);
+    animation:breathe 5s ease-in-out infinite;
+  }
+  @keyframes breathe{
+    0%,100%{ opacity:0.55; transform:translate(-50%,-50%) scale(1); }
+    50%    { opacity:0.9;  transform:translate(-50%,-50%) scale(1.12); }
+  }
+  /* resonance rings emanating from the pendant */
+  #wallpaper .ring{
+    position:absolute;
+    left:50%; top:60%;
+    width:120px; height:120px;
+    border:1.5px solid rgba(140,165,255,0.45);
+    border-radius:50%;
+    transform:translate(-50%,-50%) scale(0.2);
+    opacity:0;
+    animation:resonate 6s ease-out infinite;
+  }
+  #wallpaper .ring:nth-child(2){ animation-delay:2s; }
+  #wallpaper .ring:nth-child(3){ animation-delay:4s; }
+  @keyframes resonate{
+    0%  { transform:translate(-50%,-50%) scale(0.15); opacity:0; }
+    12% { opacity:0.7; }
+    100%{ transform:translate(-50%,-50%) scale(3.4); opacity:0; }
+  }
+  /* the logo itself */
+  #wallpaper .logo-fork{
+    position:absolute;
+    left:50%; top:44%;
+    transform:translate(-50%,-50%);
+    height:60%;
+    width:auto;
+    filter:drop-shadow(0 0 22px rgba(38,69,232,0.55));
+    animation:hum 5s ease-in-out infinite;
+  }
+  @keyframes hum{
+    0%,100%{ transform:translate(-50%,-50%) translateX(0); }
+    25%    { transform:translate(-50%,-50%) translateX(-0.8px); }
+    75%    { transform:translate(-50%,-50%) translateX(0.8px); }
+  }
+  /* drifting particles (echo the dots inside the droplet) */
+  #wallpaper .particle{
+    position:absolute;
+    background:rgba(180,200,255,0.85);
+    border-radius:50%;
+    box-shadow:0 0 6px rgba(140,165,255,0.8);
+    animation:drift linear infinite;
+  }
+  @keyframes drift{
+    0%  { transform:translateY(0) translateX(0); opacity:0; }
+    10% { opacity:0.9; }
+    90% { opacity:0.7; }
+    100%{ transform:translateY(-120px) translateX(var(--dx)); opacity:0; }
+  }
+  /* faint distant stars */
+  #wallpaper .stars{
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 78% 12%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 32% 70%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1px 1px at 88% 64%, rgba(255,255,255,0.45), transparent),
+      radial-gradient(1px 1px at 60% 30%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 8% 82%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 50% 88%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.35), transparent);
+    animation:twinkle 4s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle{ from{opacity:0.4;} to{opacity:0.9;} }
+
+  @media (max-width:600px){
+    #wallpaper .logo-fork{ height:38%; top:30%; }
+    #wallpaper .bloom{ top:30%; width:340px;height:340px; }
+    #wallpaper .ring{ top:42%; }
+  }

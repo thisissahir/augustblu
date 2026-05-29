@@ -1,0 +1,171 @@
+/* ===================== WINDOWS ===================== */
+  .window{
+    position:absolute;
+    min-width:300px;
+    background:var(--gray);
+    display:none;
+    flex-direction:column;
+    padding:3px;
+  }
+  .window.open{ display:flex; }
+
+  .titlebar{
+    height:20px;
+    background:linear-gradient(90deg, var(--navy) 0%, var(--navy-light) 100%);
+    display:flex;align-items:center;
+    padding:0 2px 0 4px;
+    cursor:move;
+    flex-shrink:0;
+  }
+  .titlebar.inactive{
+    background:linear-gradient(90deg, var(--gray-dark) 0%, #B5B5B5 100%);
+  }
+  .titlebar .title{
+    color:#FFFFFF;
+    font-weight:bold;
+    font-size:11px;
+    flex:1;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:flex;align-items:center;gap:5px;
+  }
+  .titlebar .title .ticon{ font-size:13px; }
+  .tb-btns{ display:flex; gap:2px; }
+  .tb-btn{
+    width:16px;height:14px;
+    background:var(--gray);
+    border-top:1px solid var(--white);
+    border-left:1px solid var(--white);
+    border-right:1px solid var(--gray-darker);
+    border-bottom:1px solid var(--gray-darker);
+    font-size:9px;
+    line-height:11px;
+    text-align:center;
+    font-family:Marlett,"MS Sans Serif",sans-serif;
+    font-weight:bold;
+    cursor:pointer;
+    color:#000;
+    display:flex;align-items:center;justify-content:center;
+    padding-bottom:2px;
+  }
+  .tb-btn:active{
+    border-top:1px solid var(--gray-darker);
+    border-left:1px solid var(--gray-darker);
+    border-right:1px solid var(--white);
+    border-bottom:1px solid var(--white);
+  }
+
+  .menubar{
+    display:flex;
+    gap:0;
+    padding:1px 2px;
+    font-size:11px;
+    border-bottom:1px solid var(--gray-dark);
+    flex-shrink:0;
+  }
+  .menubar span{ padding:2px 7px; cursor:default; }
+  .menubar span:hover{ background:var(--navy); color:#fff; }
+
+  .win-body{
+    background:var(--gray);
+    padding:3px;
+    flex:1;
+    overflow:auto;
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+  }
+  .win-content{
+    background:var(--white);
+    flex:1;
+    padding:14px 16px;
+    overflow:auto;
+    line-height:1.55;
+    font-size:12px;
+    color:#000;
+  }
+  .win-content.gray{ background:var(--gray); }
+
+  .statusbar{
+    display:flex;
+    gap:3px;
+    padding:2px;
+    flex-shrink:0;
+  }
+  .status-cell{
+    background:var(--gray);
+    padding:2px 6px;
+    font-size:11px;
+    color:var(--gray-darker);
+  }
+  .status-cell.grow{ flex:1; }
+
+  /* content helpers */
+  .win-content h2{ font-size:15px; margin-bottom:8px; color:var(--navy); }
+  .win-content h3{ font-size:13px; margin:12px 0 5px; }
+  .win-content p{ margin-bottom:9px; }
+  .win-content a{ color:#0000EE; }
+  .placeholder-note{
+    background:#FFFFCC;
+    border:1px solid #E0C000;
+    padding:8px 10px;
+    margin-top:10px;
+    font-size:11px;
+    color:#665500;
+  }
+
+  /* gallery / demos grids */
+  .thumb-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(90px,1fr));
+    gap:10px;
+    margin-top:6px;
+  }
+  .thumb{
+    aspect-ratio:1;
+    background:linear-gradient(135deg,#9aa8c8,#5c6f9c);
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+    color:#fff;
+    cursor:pointer;
+  }
+  .thumb:hover{ outline:2px dotted var(--navy); }
+
+  .file-row{
+    display:flex;align-items:center;gap:8px;
+    padding:3px 5px;
+    cursor:pointer;
+  }
+  .file-row:hover{ background:var(--navy); color:#fff; }
+  .file-row .fi{ font-size:16px; }
+
+  .list-item{
+    display:flex;align-items:flex-start;gap:8px;
+    padding:8px 6px;
+    border-bottom:1px solid #E5E5E5;
+  }
+  .list-item .dot{ font-size:14px; }
+  .list-item .meta{ font-size:10px; color:#888; }
+
+  /* buttons */
+  .btn{
+    background:var(--gray);
+    border-top:2px solid var(--white);
+    border-left:2px solid var(--white);
+    border-right:2px solid var(--gray-darker);
+    border-bottom:2px solid var(--gray-darker);
+    padding:4px 14px;
+    font-size:11px;
+    font-family:inherit;
+    cursor:pointer;
+    min-width:70px;
+  }
+  .btn:active{
+    border-top:2px solid var(--gray-darker);
+    border-left:2px solid var(--gray-darker);
+    border-right:2px solid var(--white);
+    border-bottom:2px solid var(--white);
+    padding:5px 13px 3px 15px;
+  }
+  .btn-row{ display:flex; gap:8px; justify-content:flex-end; margin-top:14px; }
