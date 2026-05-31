@@ -254,8 +254,11 @@ input[type=range].ap-range::-moz-range-thumb{
 #bb-full{ position:fixed; inset:0; z-index:9400; display:none; align-items:center; justify-content:center; }
 #bb-full.open{ display:flex; }
 #bb-full .bb-shade{ position:absolute; inset:0; background:rgba(0,0,0,0.7); }
-.bb-full-win{ position:relative; width:min(620px,94vw); padding:3px; }
-.bb-full-body{ background:var(--gray); padding:6px; display:flex; flex-direction:column; gap:6px; }
+/* reuses .window chrome but is shown via #bb-full.open (not its own .open),
+   so force it visible to override the base .window{display:none} */
+.bb-full-win{ position:relative; width:min(620px,94vw); padding:3px;
+  display:flex !important; flex-direction:column; max-height:90vh; }
+.bb-full-body{ background:var(--gray); padding:6px; display:flex; flex-direction:column; gap:6px; overflow:auto; }
 .bb-cork{
   background:#9a6a35;
   background-image:radial-gradient(rgba(0,0,0,0.1) 1px, transparent 1px);
