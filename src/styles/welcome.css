@@ -23,8 +23,34 @@
 
   @media (max-width:600px){
     body{ background-size:auto 38%; background-position:center 30%; }
-    .window{ min-width:0; width:92vw!important; left:4vw!important; }
-    #welcome{ width:92vw; }
+
+    /* app windows: full-width, fixed gutter, capped height so the body scrolls */
+    .window:not(#welcome){
+      min-width:0;
+      width:92vw!important;
+      left:4vw!important;
+      max-width:92vw;
+      max-height:80vh;
+    }
+
+    /* intro/welcome: keep it centred and fully on-screen.
+       The generic rule above is scoped away from #welcome so its
+       left:50% + translate(-50%) centring is no longer fought. */
+    #welcome{
+      left:50%!important;
+      top:50%!important;
+      transform:translate(-50%,-50%)!important;
+      width:92vw!important;
+      max-width:360px;
+      max-height:88vh;
+      overflow:hidden;
+    }
+    #welcome .win-body{ flex:1; min-height:0; overflow:auto; }
+    .welcome-hero{ padding:18px 16px; }
+    .welcome-hero .big{ font-size:23px; }
+    .welcome-hero .sub{ font-size:11px; }
+    #welcome .win-content{ font-size:12px; padding:12px 14px; }
+
     .task-item{ min-width:46px; }
     .task-item .ti-label{ display:none; }
   }

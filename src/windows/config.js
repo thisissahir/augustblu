@@ -22,7 +22,7 @@ const PHOTOS = [
   "/assets/photos/05-underwater-walk.jpg",
   "/assets/photos/06-beach-night.jpg",
 ];
-const galGrid = PHOTOS.map((p) => `<img src="${p}" alt="" data-full="${p}">`).join("");
+const galGrid = PHOTOS.map((p) => `<img src="${p}" alt="" data-full="${p}" loading="lazy">`).join("");
 
 
 const journalFiles = JOURNAL.map((e, i) => `

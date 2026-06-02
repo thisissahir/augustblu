@@ -286,4 +286,15 @@ input[type=range].ap-range::-moz-range-thumb{
 @media (max-width:600px){
   #bb-mini{ width:120px; top:10px; right:10px; }
   .bb-cork{ grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); }
+
+  /* gallery: tighter grid, full-bleed lightbox, bigger tap-to-close */
+  .gal-grid{ gap:6px; }
+  #lightbox img{ max-width:94vw; max-height:80vh; }
+  #lightbox .lb-close{ width:40px; height:36px; font-size:20px; top:10px; right:10px; }
+
+  /* picture & fax viewer (memories) fits the screen too */
+  .pfv-win{ width:94vw; }
+  .pfv-stage{ min-height:200px; max-height:64vh; }
+  .pfv-stage img{ max-height:64vh; }
+  .pfv-b{ min-width:40px; min-height:32px; }
 }

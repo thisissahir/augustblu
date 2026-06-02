@@ -103,7 +103,12 @@
   @keyframes twinkle{ from{opacity:0.4;} to{opacity:0.9;} }
 
   @media (max-width:600px){
-    #wallpaper .logo-fork{ height:38%; top:30%; }
-    #wallpaper .bloom{ top:30%; width:340px;height:340px; }
-    #wallpaper .ring{ top:42%; }
+    /* smaller, centred logo so it reads as a clean centrepiece on a phone
+       and clears the desktop icons / taskbar */
+    #wallpaper .logo-fork{ height:30%; top:40%; }
+    #wallpaper .bloom{ top:40%; width:280px;height:280px; }
+    #wallpaper .ring{ top:42%; width:200px;height:200px; }
+  }
+  @media (max-width:380px){
+    #wallpaper .logo-fork{ height:26%; }
   }
