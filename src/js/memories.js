@@ -41,7 +41,7 @@ function openRoll(id) {
         <span class="mem-row-type">JPEG Image</span>
       </div>`;
     }
-    return `<div class="mem-thumb" data-idx="${i}"><img src="${p}" alt=""><span>${file}</span></div>`;
+    return `<div class="mem-thumb" data-idx="${i}"><img src="${p}" alt="" loading="lazy"><span>${file}</span></div>`;
   }).join("");
 
   pane.querySelectorAll("[data-idx]").forEach((el) => {

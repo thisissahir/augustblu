@@ -13,7 +13,16 @@ dist/
 /Gallery/
 /Memories/
 /August Blu Design System*/
+/TINTED WINDOWS*/
 /media/
 hf_*.png
 white look*.png
 *.zip
+
+# Stray raw media dumped in the project root (audio/video sessions).
+# Site media lives under public/assets, which is re-included below.
+*.wav
+*.mov
+*.aif
+*.aiff
+!public/assets/**
