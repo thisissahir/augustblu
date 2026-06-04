@@ -203,6 +203,25 @@ input[type=range].ap-range::-moz-range-thumb{
 .pfv-b:active{ border-top:2px solid var(--gray-darker); border-left:2px solid var(--gray-darker); border-right:2px solid var(--white); border-bottom:2px solid var(--white); }
 .pfv-count{ margin-left:auto; font-size:11px; color:var(--gray-darker); }
 
+/* ===================== LISTENER EMAIL GATE (Demos) ===================== */
+#lg{ position:fixed; inset:0; z-index:9600; display:none; align-items:center; justify-content:center; }
+#lg.open{ display:flex; }
+#lg .lg-shade{ position:absolute; inset:0; background:rgba(0,0,0,0.82); }
+/* reuses .window chrome, shown via #lg.open — force visible over .window{display:none} */
+.lg-win{ position:relative; width:min(380px,92vw); padding:3px; display:flex !important; flex-direction:column; }
+.lg-body{ background:var(--gray); padding:18px 16px; display:flex; flex-direction:column; gap:11px; text-align:center; }
+.lg-art{ font-size:40px; line-height:1; filter:drop-shadow(0 0 8px rgba(38,69,232,0.5)); }
+.lg-copy{ font-size:12px; line-height:1.45; }
+.lg-copy span{ font-size:11px; color:#555; }
+.lg-field{ display:flex; align-items:center; gap:7px; background:#fff; padding:5px 9px;
+  border-top:2px solid var(--gray-darker); border-left:2px solid var(--gray-darker);
+  border-right:2px solid var(--white); border-bottom:2px solid var(--white); }
+.lg-ico{ font-size:15px; }
+.lg-input{ flex:1; border:none; outline:none; background:transparent; font-family:inherit; font-size:13px; color:#000; }
+.lg-row{ display:flex; align-items:center; gap:10px; }
+.lg-status{ flex:1; text-align:left; font-size:11px; color:#a00; }
+@media (max-width:600px){ .lg-win{ width:92vw; } }
+
 /* ===================== FREEBIES ===================== */
 .free-list{ margin-top:6px; }
 .free-row{ display:flex; align-items:center; gap:10px; padding:7px 6px; border-bottom:1px solid #e8e8e8; }
