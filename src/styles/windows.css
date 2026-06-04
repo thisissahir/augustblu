@@ -6,6 +6,10 @@
     display:none;
     flex-direction:column;
     padding:3px;
+    /* never grow taller than the screen — content scrolls inside instead
+       of the window running off the bottom with no way to reach it.
+       Leaves room for the window's top offset + the taskbar. */
+    max-height:calc(100vh - 96px);
   }
   .window.open{ display:flex; }
 
@@ -79,6 +83,7 @@
   .win-content{
     background:var(--white);
     flex:1;
+    min-height:0;            /* allow inner scroll areas (e.g. Memories grid) to shrink + scroll */
     padding:14px 16px;
     overflow:auto;
     line-height:1.55;
