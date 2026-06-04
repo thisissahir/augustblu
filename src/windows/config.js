@@ -15,12 +15,22 @@ const demoTiles = TRACKS.map((t, i) => `
   </div>`).join("");
 
 const PHOTOS = [
-  "/assets/photos/01-saltflat-white.jpg",
-  "/assets/photos/02-underwater-float.jpg",
-  "/assets/photos/03-road-bluehour.jpg",
-  "/assets/photos/04-road-night.jpg",
-  "/assets/photos/05-underwater-walk.jpg",
-  "/assets/photos/06-beach-night.jpg",
+  "/assets/photos/series1/01.jpg",
+  "/assets/photos/series1/02.jpg",
+  "/assets/photos/series1/03.jpg",
+  "/assets/photos/series1/04.jpg",
+  "/assets/photos/series1/05.jpg",
+  "/assets/photos/series1/06.jpg",
+  "/assets/photos/series1/07.jpg",
+  "/assets/photos/series1/08.jpg",
+  "/assets/photos/series1/09.jpg",
+  "/assets/photos/series1/10.jpg",
+  "/assets/photos/series1/11.jpg",
+  "/assets/photos/series1/12.jpg",
+  "/assets/photos/series1/13.jpg",
+  "/assets/photos/series1/14.jpg",
+  "/assets/photos/series1/15.jpg",
+  "/assets/photos/series1/16.jpg",
 ];
 const galGrid = PHOTOS.map((p) => `<img src="${p}" alt="" data-full="${p}" loading="lazy">`).join("");
 
