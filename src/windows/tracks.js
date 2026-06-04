@@ -5,23 +5,23 @@
 export const TRACKS = [
   {
     id: "t1",
-    title: "Untitled Demo 01",
-    subtitle: "August Blu",
-    cover: "/assets/covers/cover-1.jpg",
+    title: "All Is Love",
+    subtitle: "August Blu — demo",
+    cover: "/assets/covers/symbol.png",
     src: "/assets/audio/demo-01.mp3",
   },
   {
     id: "t2",
-    title: "Untitled Demo 02",
-    subtitle: "August Blu",
-    cover: "/assets/covers/cover-2.jpg",
+    title: "Away, A Way",
+    subtitle: "August Blu — demo",
+    cover: "/assets/covers/symbol.png",
     src: "/assets/audio/demo-02.mp3",
   },
   {
     id: "t3",
-    title: "Untitled Demo 03",
-    subtitle: "August Blu",
-    cover: "/assets/covers/cover-3.jpg",
+    title: "Tinted Windows (Acoustic)",
+    subtitle: "August Blu — demo",
+    cover: "/assets/covers/symbol.png",
     src: "/assets/audio/demo-03.mp3",
   },
 ];
