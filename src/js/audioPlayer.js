@@ -40,6 +40,8 @@ function setNowPlaying(t) {
   $("ap-cover").src = t.cover;
   $("ap-title").textContent = t.title;
   $("ap-sub").textContent = t.subtitle;
+  const npt = $("np-title");
+  if (npt) npt.textContent = t.title;
 }
 
 function load(i, autoplay) {
@@ -92,9 +94,25 @@ export function initAudioPlayer() {
   vol.oninput = () => { audio.volume = vol.value / 100; };
   audio.volume = 0.8;
 
-  audio.addEventListener("play",  () => { $("ap-play").textContent = "❚❚"; $("ap-status").textContent = "Playing"; });
-  audio.addEventListener("pause", () => { $("ap-play").textContent = "▶";  $("ap-status").textContent = "Paused"; });
-  audio.addEventListener("ended", () => $("ap-next").click());
+  // now-playing tray widget — persists while you roam, plays in the background
+  const np = $("np"), npToggle = $("np-toggle");
+  if (np) {
+    npToggle.onclick = (e) => { e.stopPropagation(); togglePlay(); };
+    np.onclick = () => { openWin("player"); focusWin("player"); };
+  }
+
+  audio.addEventListener("play",  () => {
+    $("ap-play").textContent = "❚❚"; $("ap-status").textContent = "Playing";
+    if (np) np.classList.add("on", "playing");
+    if (npToggle) npToggle.textContent = "❚❚";
+  });
+  audio.addEventListener("pause", () => {
+    $("ap-play").textContent = "▶";  $("ap-status").textContent = "Paused";
+    if (np) np.classList.remove("playing");
+    if (npToggle) npToggle.textContent = "▶";
+  });
+  // auto-advance to the next track and loop forever (independent of the window)
+  audio.addEventListener("ended", () => load((current + 1) % TRACKS.length, true));
   audio.addEventListener("timeupdate", () => {
     $("ap-cur").textContent = fmt(audio.currentTime);
     if (isFinite(audio.duration)) {

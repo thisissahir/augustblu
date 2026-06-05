@@ -66,3 +66,29 @@
     flex-shrink:0;
   }
   #clock{ font-size:11px; }
+
+  /* now-playing tray widget — stays put while you roam the site */
+  .np{
+    display:none; align-items:center; gap:5px;
+    max-width:200px; padding:0 6px 0 2px; cursor:pointer;
+    border-right:1px solid var(--gray-dark); margin-right:4px;
+  }
+  .np.on{ display:flex; }
+  .np-toggle{
+    width:18px; height:16px; flex-shrink:0; font-size:8px; line-height:1; cursor:pointer;
+    background:var(--gray); color:#000;
+    border-top:1px solid var(--white); border-left:1px solid var(--white);
+    border-right:1px solid var(--gray-darker); border-bottom:1px solid var(--gray-darker);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .np-toggle:active{ border-top:1px solid var(--gray-darker); border-left:1px solid var(--gray-darker); border-right:1px solid var(--white); border-bottom:1px solid var(--white); }
+  .np-title{ font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .np-eq{ display:none; align-items:flex-end; gap:1px; height:11px; flex-shrink:0; }
+  .np.playing .np-eq{ display:flex; }
+  .np-eq i{ width:2px; background:var(--navy); animation:npbar 0.9s ease-in-out infinite; }
+  .np-eq i:nth-child(1){ height:5px; animation-delay:0s; }
+  .np-eq i:nth-child(2){ height:10px; animation-delay:0.2s; }
+  .np-eq i:nth-child(3){ height:7px; animation-delay:0.4s; }
+  @keyframes npbar{ 0%,100%{ transform:scaleY(0.4); } 50%{ transform:scaleY(1); } }
+
+  @media (max-width:600px){ .np{ max-width:120px; } }
