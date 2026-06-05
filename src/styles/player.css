@@ -316,4 +316,11 @@ input[type=range].ap-range::-moz-range-thumb{
   .pfv-stage{ min-height:200px; max-height:64vh; }
   .pfv-stage img{ max-height:64vh; }
   .pfv-b{ min-width:40px; min-height:32px; }
+
+  /* Journal + Documents: stack the file list above a full-width reader
+     (the side-by-side panes squeeze the reader to an unreadable width) */
+  .jr-pane{ flex-direction:column; height:auto; gap:5px; }
+  .jr-list{ width:auto; max-height:33vh; display:flex; flex-direction:column; }
+  .jr-file{ padding:9px 9px; font-size:12px; }   /* bigger tap targets */
+  .jr-reader{ max-height:46vh; padding:12px 13px; font-size:13px; line-height:1.5; }
 }
