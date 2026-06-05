@@ -34,9 +34,10 @@ export function initDesktop() {
   // journal: clicking a file shows that doc
   document.querySelectorAll(".jr-file").forEach((file) => {
     file.addEventListener("click", () => {
+      const win = file.closest(".window") || document;
       const id = file.dataset.jr;
-      document.querySelectorAll(".jr-file").forEach((f) => f.classList.toggle("active", f === file));
-      document.querySelectorAll(".jr-doc").forEach((d) =>
+      win.querySelectorAll(".jr-file").forEach((f) => f.classList.toggle("active", f === file));
+      win.querySelectorAll(".jr-doc").forEach((d) =>
         d.classList.toggle("active", d.id === "jr-doc-" + id));
     });
   });

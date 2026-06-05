@@ -4,6 +4,7 @@
 
 import { TRACKS } from "./tracks.js";
 import { JOURNAL } from "./journal.js";
+import { DOCUMENTS } from "./documents.js";
 import { ROLLS } from "./memories.js";
 import { FREEBIES, FREEBIE_ICON } from "./freebies.js";
 
@@ -40,6 +41,16 @@ const journalFiles = JOURNAL.map((e, i) => `
     <span class="fi">📄</span> ${e.name}
   </div>`).join("");
 const journalDocs = JOURNAL.map((e, i) => `
+  <div class="jr-doc${i === 0 ? " active" : ""}" id="jr-doc-${e.id}">
+    <div class="jr-doc-head"><b>${e.title}</b><span class="meta">${e.date}</span></div>
+    ${e.body}
+  </div>`).join("");
+
+const docFiles = DOCUMENTS.map((e, i) => `
+  <div class="jr-file${i === 0 ? " active" : ""}" data-jr="${e.id}">
+    <span class="fi">📄</span> ${e.name}
+  </div>`).join("");
+const docDocs = DOCUMENTS.map((e, i) => `
   <div class="jr-doc${i === 0 ? " active" : ""}" id="jr-doc-${e.id}">
     <div class="jr-doc-head"><b>${e.title}</b><span class="meta">${e.date}</span></div>
     ${e.body}
@@ -116,17 +127,15 @@ export const WINDOWS = [
   },
   {
     id: "documents", icon: "📁", title: "Documents",
-    width: 440, top: 120, left: 240, showOnDesktop: true,
+    width: 540, top: 120, left: 240, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
-    status: ["5 object(s)", "August Blu"],
+    status: [`${DOCUMENTS.length} object(s)`, "August Blu"],
+    bodyClass: `class="win-content jr-wrap"`,
     body: `
-      <h2>Documents</h2>
-      <div class="file-row"><span class="fi">📄</span> readme.txt</div>
-      <div class="file-row"><span class="fi">📄</span> about.doc</div>
-      <div class="file-row"><span class="fi">📄</span> press_kit.pdf</div>
-      <div class="file-row"><span class="fi">📄</span> contact.txt</div>
-      <div class="file-row"><span class="fi">📁</span> archive</div>
-      <div class="placeholder-note">Placeholder — link each file to real downloads / pages later.</div>`,
+      <div class="jr-pane">
+        <div class="jr-list sunken">${docFiles}</div>
+        <div class="jr-reader sunken">${docDocs}</div>
+      </div>`,
   },
   {
     id: "freebies", icon: "🎁", title: "Freebies",
