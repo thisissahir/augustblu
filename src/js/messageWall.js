@@ -51,12 +51,16 @@ async function loadMessages() {
 }
 
 async function submitMessage(name, message) {
-  const res = await fetch(rest(TABLE), {
-    method: "POST",
-    headers: { ...headers, Prefer: "return=minimal" },
-    body: JSON.stringify({ name, message }), // approved defaults to false (pending)
-  });
-  return res.ok;
+  try {
+    const res = await fetch(rest(TABLE), {
+      method: "POST",
+      headers: { ...headers, Prefer: "return=minimal" },
+      body: JSON.stringify({ name, message }), // approved defaults to false (pending)
+    });
+    return res.ok;
+  } catch {
+    return false; // network/CSP error — never hang the UI on "Sending…"
+  }
 }
 
 export function initMessageWall() {
