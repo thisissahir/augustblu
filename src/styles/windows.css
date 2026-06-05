@@ -10,6 +10,8 @@
        of the window running off the bottom with no way to reach it.
        Leaves room for the window's top offset + the taskbar. */
     max-height:calc(100vh - 96px);
+    /* never wider than the screen either (guards the bigger desktop sizes) */
+    max-width:calc(100vw - 16px);
   }
   .window.open{ display:flex; }
 
@@ -84,10 +86,10 @@
     background:var(--white);
     flex:1;
     min-height:0;            /* allow inner scroll areas (e.g. Memories grid) to shrink + scroll */
-    padding:14px 16px;
+    padding:16px 18px;
     overflow:auto;
     line-height:1.55;
-    font-size:12px;
+    font-size:13px;
     color:#000;
   }
   .win-content.gray{ background:var(--gray); }

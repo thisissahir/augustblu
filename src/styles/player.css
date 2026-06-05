@@ -122,7 +122,7 @@ input[type=range].ap-range::-moz-range-thumb{
 
 /* ===================== JOURNAL (two-pane reader) ===================== */
 .jr-wrap{ padding:4px!important; }
-.jr-pane{ display:flex; gap:4px; height:340px; }
+.jr-pane{ display:flex; gap:4px; height:440px; }
 .jr-list{ width:150px; background:#fff; overflow:auto; flex-shrink:0; }
 .jr-file{ display:flex; align-items:center; gap:6px; padding:5px 7px; font-size:11px; cursor:pointer; }
 .jr-file:hover{ background:#e8efff; }
@@ -155,7 +155,7 @@ input[type=range].ap-range::-moz-range-thumb{
   border-right:2px solid var(--gray-darker); border-bottom:2px solid var(--gray-darker); }
 .mem-vbtn.active{ border-top:2px solid var(--gray-darker); border-left:2px solid var(--gray-darker); border-right:2px solid var(--white); border-bottom:2px solid var(--white); }
 
-.mem-body{ background:#fff; flex:1; overflow:auto; min-height:260px;
+.mem-body{ background:#fff; flex:1; overflow:auto; min-height:360px;
   border-top:2px solid var(--gray-darker); border-left:2px solid var(--gray-darker);
   border-right:2px solid var(--white); border-bottom:2px solid var(--white); margin-top:3px; }
 

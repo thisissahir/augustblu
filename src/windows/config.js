@@ -75,7 +75,7 @@ const freebieRows = FREEBIES.map((x) => `
 export const WINDOWS = [
   {
     id: "demos", icon: "🖥️", title: "Demos",
-    width: 440, top: 70, left: 110, showOnDesktop: true,
+    width: 620, top: 70, left: 110, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
     status: [`${TRACKS.length} track(s)`, "August Blu"],
     body: `
@@ -85,7 +85,7 @@ export const WINDOWS = [
   },
   {
     id: "gallery", icon: "🖼️", title: "Gallery",
-    width: 500, top: 90, left: 150, showOnDesktop: true,
+    width: 720, top: 90, left: 150, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
     status: [`${PHOTOS.length} image(s)`, "August Blu"],
     body: `
@@ -95,7 +95,7 @@ export const WINDOWS = [
   },
   {
     id: "memories", icon: "📷", title: "Memories",
-    width: 460, top: 70, left: 160, showOnDesktop: true,
+    width: 660, top: 70, left: 160, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
     status: [`${ROLLS.length} folder(s)`, "August Blu"],
     bodyClass: `class="win-content mem-wrap"`,
@@ -115,7 +115,7 @@ export const WINDOWS = [
   },
   {
     id: "journal", icon: "📓", title: "Journal",
-    width: 540, top: 80, left: 130, showOnDesktop: true,
+    width: 760, top: 80, left: 130, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
     status: [`${JOURNAL.length} document(s)`, "August Blu"],
     bodyClass: `class="win-content jr-wrap"`,
@@ -127,7 +127,7 @@ export const WINDOWS = [
   },
   {
     id: "documents", icon: "📁", title: "Documents",
-    width: 540, top: 120, left: 240, showOnDesktop: true,
+    width: 680, top: 120, left: 220, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
     status: [`${DOCUMENTS.length} object(s)`, "August Blu"],
     bodyClass: `class="win-content jr-wrap"`,
@@ -139,7 +139,7 @@ export const WINDOWS = [
   },
   {
     id: "freebies", icon: "🎁", title: "Freebies",
-    width: 440, top: 130, left: 270, showOnDesktop: true,
+    width: 640, top: 130, left: 230, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
     status: [`${FREEBIES.length} file(s)`, "August Blu"],
     body: `
@@ -165,7 +165,7 @@ export const WINDOWS = [
   /* The media player — not on the desktop grid; opened from Demos tiles + Start menu */
   {
     id: "player", icon: "🎵", title: "August Blu — Media Player",
-    width: 360, top: 60, left: 380, showOnDesktop: false, inStartMenu: true,
+    width: 440, top: 60, left: 420, showOnDesktop: false, inStartMenu: true,
     menu: ["File", "Play", "Help"],
     status: null,
     bodyClass: `class="win-content gray"`,
