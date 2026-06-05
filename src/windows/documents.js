@@ -34,6 +34,18 @@ export const DOCUMENTS = [
     name: "READ ME !!!.txt",
     title: "READ ME !!!",
     date: "—",
-    body: `<p style="color:#888">(This file is empty — drop text into DOCUMENTS/READ ME !!!.txt and it'll show here.)</p>`,
+    body: `
+      <p>Hey!</p>
+      <p>You found your way in. I don't take that lightly — nobody ends up here by accident, and nobody ends up here because an algorithm sent them. You chose to come. Thank you for that.</p>
+      <p>So let me tell you what this is.</p>
+      <p>This isn't a website. It's my world. A room I built so there'd be at least one place left that isn't trying to sell you something, rank you, or speed you up. Stay as long as you want. Touch everything.</p>
+      <p>There are only a few rules in here, and underneath they're all the same rule: <b>you don't have to perform.</b></p>
+      <p><b>No judgement.</b> Whoever you are when you walk in is enough. The version of you that's tired, the version that's angry, the version that hasn't felt anything in days — all of them are welcome.</p>
+      <p><b>No perfection.</b> Nothing in here is finished, me included. The songs are demos. The edges are rough. That's on purpose — perfect things don't make you feel anything, they just make you feel small. This place is alive, which means it's a little broken. Like everything real.</p>
+      <p><b>No gatekeeping.</b> No cool kids, no in-crowd, no door you're not good enough to walk through. You're already in. That was the only test, and you passed it by showing up.</p>
+      <p>This is a place to feel. That's the whole point. Out there, everything's built to keep you numb and moving. In here, you're allowed to stop. To stay. To feel whatever you've been carrying around.</p>
+      <p>It's called readme for a reason. Read me. And let me see you too.</p>
+      <p>You're not alone in here.</p>
+      <p>Love,<br><b>August Blu</b></p>`,
   },
 ];
