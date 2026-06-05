@@ -8,5 +8,5 @@ export const WEB3FORMS_ACCESS_KEY = "d1897c38-da28-4b78-bdb8-ceb30c74ccc5";
    Visitors INSERT a pending message; the wall reads only approved rows.
    Paste your project URL + anon (public) key from Supabase → Settings → API.
    The anon key is safe to ship publicly — Row-Level Security protects the data. */
-export const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
-export const SUPABASE_ANON_KEY = "YOUR-SUPABASE-ANON-KEY";
+export const SUPABASE_URL = "https://aoeydobhynybwcskloea.supabase.co";
+export const SUPABASE_ANON_KEY = "sb_publishable_N8lRKUKiIcYYIKs8mhFuqA_fhQj-mtc";
