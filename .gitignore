@@ -21,6 +21,8 @@ dist/
 /media/
 hf_*.png
 white look*.png
+Screenshot*.png
+/*.png
 *.zip
 
 # Stray raw media dumped in the project root (audio/video sessions).
