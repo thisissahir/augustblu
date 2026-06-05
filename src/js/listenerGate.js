@@ -27,6 +27,7 @@ async function sendListenerEmail(email) {
         subject: "hey you got a listener 🎧",
         from_name: "August Blu — augustblu.com",
         email, // reply-to the listener
+        botcheck: "",
         message: `Hey — you got a listener!\n\nEmail: ${email}\nThey opened: ${track}\nSource: augustblu.com (Demos)`,
       }),
     });
@@ -55,6 +56,8 @@ function buildModal() {
           <span class="lg-ico">✉️</span>
           <input id="lg-email" class="lg-input" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" maxlength="120">
         </div>
+        <input id="lg-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+
         <div class="lg-row">
           <span id="lg-status" class="lg-status"></span>
           <button class="btn" id="lg-submit">Listen ▶</button>
@@ -80,6 +83,8 @@ export function ensureListener() {
     status.textContent = "";
     const finish = (unlocked) => { m.classList.remove("open"); pending = null; if (unlocked) resolve(true); };
     const go = () => {
+      // honeypot: real people leave it empty; bots fill it → drop silently
+      const hp = $("lg-hp"); if (hp && hp.value) { finish(false); return; }
       const v = email.value.trim();
       if (!validEmail(v)) { status.textContent = "Enter a valid email."; email.focus(); return; }
       submit.disabled = true; status.textContent = "Unlocking…";

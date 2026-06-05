@@ -58,6 +58,7 @@ async function sendEmail(name, text) {
         access_key: WEB3FORMS_ACCESS_KEY,
         subject: "New note on the August Blu bulletin board",
         from_name: name || "Anonymous visitor",
+        botcheck: "",
         message: text,
       }),
     });
