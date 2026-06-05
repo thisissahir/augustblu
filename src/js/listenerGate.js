@@ -2,7 +2,7 @@
    The first time someone tries to play a demo, ask for their email.
    On submit: notify hi@augustblu.com via Web3Forms ("hey you got a listener")
    and unlock playback for the rest of the visit (remembered in localStorage). */
-import { WEB3FORMS_ACCESS_KEY } from "../windows/bulletin.js";
+import { WEB3FORMS_ACCESS_KEY } from "../settings.js";
 
 const LKEY = "augustblu_listener";
 const $ = (id) => document.getElementById(id);
