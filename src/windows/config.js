@@ -146,7 +146,21 @@ export const WINDOWS = [
       <h2>Freebies</h2>
       <p>Free to take. Songs, snippets, clips.</p>
       <div class="free-list">${freebieRows}</div>
-      <div class="placeholder-note">Drop files into public/assets/freebies/ and list them in freebies.js</div>`,
+
+      <div class="wall">
+        <h3 class="wall-head">The Wall</h3>
+        <p class="wall-sub">Leave a mark. Messages are read and put up by August Blu.</p>
+        <div class="wall-list" id="wall-list"><div class="wall-empty">Loading…</div></div>
+        <div class="wall-compose">
+          <input id="wall-name" class="wall-input" type="text" placeholder="your name" maxlength="60">
+          <textarea id="wall-text" class="wall-input wall-textarea" placeholder="write something…" maxlength="600"></textarea>
+          <input id="wall-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+          <div class="wall-row">
+            <span id="wall-status" class="wall-status"></span>
+            <button id="wall-send" class="btn">📌 Put it up</button>
+          </div>
+        </div>
+      </div>`,
   },
   /* The media player — not on the desktop grid; opened from Demos tiles + Start menu */
   {
