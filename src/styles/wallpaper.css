@@ -5,8 +5,11 @@
     z-index:0;
     overflow:hidden;
     pointer-events:none;
-    background:#000000;
+    background:#008080;   /* classic Windows 98 teal desktop */
   }
+  /* hide the old black-void centrepiece (logo, rings, bloom, stars, grid,
+     particles) — the desktop is now the flat Win98 teal */
+  #wallpaper > *{ display:none !important; }
   /* retro perspective grid floor */
   #wallpaper .grid-floor{
     position:absolute;

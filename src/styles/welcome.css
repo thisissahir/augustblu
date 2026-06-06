@@ -1,55 +1,80 @@
-/* ===================== BOOT / WELCOME ===================== */
-  #welcome{
+/* ===================== WELCOME — Win98 "Welcome to..." popup ===================== */
+  #welcome.w98w{
     position:absolute;
-    top:50%;left:50%;
+    top:50%; left:50%;
     transform:translate(-50%,-50%);
-    width:420px;
+    width:560px;
     z-index:3000;
   }
-  .welcome-hero{
-    background:linear-gradient(135deg,#2e5c8a,#5a8fd0);
-    color:#fff;
-    padding:26px 22px;
-    text-align:center;
+  .w98-body{ display:flex; flex-direction:column; background:#fff; }
+
+  /* header band — logo + wordmark on a soft sky (matches the logo's lavender) */
+  .w98-header{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 18px;
+    background:linear-gradient(120deg, #eaeeff 0%, #dde6ff 55%, #eef2ff 100%);
+    border-bottom:1px solid #b9c4e8;
   }
-  .welcome-hero .big{
-    font-size:30px;
-    font-weight:bold;
-    letter-spacing:1px;
-    text-shadow:2px 2px 0 rgba(0,0,0,0.3);
-    margin-bottom:4px;
+  .w98-logo{ width:46px; height:46px; object-fit:contain; flex-shrink:0; }
+  .w98-word{ display:flex; flex-direction:column; line-height:1.1; }
+  .w98-big{ font-size:26px; font-weight:bold; letter-spacing:1px; color:#10215e; }
+  .w98-sub{ font-size:12px; color:#3a4a7a; margin-top:3px; }
+
+  /* main = CONTENTS sidebar + message */
+  .w98-main{ display:flex; align-items:stretch; }
+  .w98-side{
+    width:150px; flex-shrink:0;
+    background:#0a1330; color:#fff;
+    padding:12px 0;
   }
-  .welcome-hero .sub{ font-size:12px; opacity:0.85; }
+  .w98-side-title{
+    font-size:11px; letter-spacing:2px; color:#8ea0d8;
+    padding:0 12px 8px; border-bottom:1px solid #26356b; margin-bottom:6px;
+  }
+  .w98-item{
+    font-size:13px; font-weight:bold; padding:7px 12px 7px 14px;
+    border-left:5px solid transparent;
+  }
+  .w98-item.a-red{ border-left-color:#e0483b; }
+  .w98-item.a-blue{ border-left-color:#3a5bff; }
+  .w98-item.a-green{ border-left-color:#36b06a; }
+  .w98-item.a-yellow{ border-left-color:#e7c12b; }
+
+  .w98-content{
+    flex:1; min-width:0; background:#fff;
+    padding:18px 20px;
+    display:flex; flex-direction:column;
+  }
+  .w98-h{ font-size:18px; color:#10215e; margin-bottom:10px; font-weight:bold; }
+  .w98-content p{ font-size:13px; line-height:1.55; margin-bottom:11px; color:#1a1a1a; }
+  .w98-btnrow{ margin-top:auto; padding-top:6px; display:flex; justify-content:flex-end; }
+  .w98-enter{ min-width:96px; padding:6px 18px; }
 
   @media (max-width:600px){
     body{ background-size:auto 38%; background-position:center 30%; }
 
     /* app windows: full-width, fixed gutter, capped height so the body scrolls */
     .window:not(#welcome){
-      min-width:0;
-      width:92vw!important;
-      left:4vw!important;
-      max-width:92vw;
-      max-height:80vh;
+      min-width:0; width:92vw!important; left:4vw!important;
+      max-width:92vw; max-height:80vh;
     }
 
-    /* intro/welcome: keep it centred and fully on-screen.
-       The generic rule above is scoped away from #welcome so its
-       left:50% + translate(-50%) centring is no longer fought. */
-    #welcome{
-      left:50%!important;
-      top:50%!important;
+    /* welcome: centred, on-screen, scrollable */
+    #welcome.w98w{
+      left:50%!important; top:50%!important;
       transform:translate(-50%,-50%)!important;
-      width:92vw!important;
-      max-width:360px;
-      max-height:88vh;
-      overflow:hidden;
+      width:94vw!important; max-width:420px;
+      max-height:88vh; overflow:hidden;
     }
-    #welcome .win-body{ flex:1; min-height:0; overflow:auto; }
-    .welcome-hero{ padding:18px 16px; }
-    .welcome-hero .big{ font-size:23px; }
-    .welcome-hero .sub{ font-size:11px; }
-    #welcome .win-content{ font-size:12px; padding:12px 14px; }
+    #welcome .w98-body{ flex:1; min-height:0; overflow:auto; }
+    .w98-header{ padding:12px 14px; gap:11px; }
+    .w98-logo{ width:38px; height:38px; }
+    .w98-big{ font-size:21px; }
+    .w98-sub{ font-size:11px; }
+    .w98-side{ display:none; }            /* drop the CONTENTS rail on phones — keep the message */
+    .w98-content{ padding:15px 16px; }
+    .w98-h{ font-size:16px; }
+    .w98-content p{ font-size:12.5px; line-height:1.5; }
 
     .task-item{ min-width:46px; }
     .task-item .ti-label{ display:none; }
