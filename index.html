@@ -104,8 +104,11 @@
   <!-- DESKTOP (icons injected by render.js) -->
   <div id="desktop"><div class="icon-grid" id="iconGrid"></div></div>
 
-  <!-- WELCOME -->
-  <div class="window raised open w98w" id="welcome" data-win="welcome" style="z-index:3000">
+  <!-- ENTRY GATE: full-screen shade behind the welcome (blocks the site until email) -->
+  <div id="entry-shade"></div>
+
+  <!-- WELCOME / ENTRY EMAIL GATE -->
+  <div class="window raised open w98w" id="welcome" data-win="welcome" style="z-index:9999">
     <div class="titlebar">
       <div class="title"><span class="ticon">✴️</span> Welcome to August Blu</div>
       <div class="tb-btns"><div class="tb-btn close" data-close="welcome">✕</div></div>
@@ -118,27 +121,25 @@
           <span class="w98-sub">ANTI-POP</span>
         </div>
       </div>
-      <div class="w98-main">
-        <div class="w98-side">
-          <div class="w98-side-title">CONTENTS</div>
-          <div class="w98-item a-red">Demos</div>
-          <div class="w98-item a-blue">Gallery</div>
-          <div class="w98-item a-green">Memories</div>
-          <div class="w98-item a-yellow">Journal</div>
-          <div class="w98-item a-red">Documents</div>
+      <div class="w98-content w98-gate">
+        <h2 class="w98-h">Welcome to my world.</h2>
+        <p class="w98-gate-msg">No feed pushed you here, no algorithm decided for you — you came on purpose. Leave your email and come in. Just once, then the whole place is yours.</p>
+        <p class="w98-info-msg">You're in. Wander wherever you like — and leave me a note on The Wall, in Freebies.</p>
+        <div class="w98-field">
+          <span class="w98-ico">✉️</span>
+          <input id="welcome-email" class="w98-input" type="email" inputmode="email" autocomplete="email" placeholder="your@email.com" maxlength="120">
         </div>
-        <div class="w98-content">
-          <h2 class="w98-h">You chose to be here.</h2>
-          <p>No feed pushed you in, no algorithm decided for you, you've come on purpose, thank you.</p>
-          <p>There's nothing to chase in here, nothing to scroll. Open whatever pulls you, leave the rest. I only hope it gives you somewhere to slow down and feel, for a little while.</p>
-          <p>Take your time. I'm glad you're here.</p>
-          <p>Make sure to send out a message on the Wall — it's in the Freebies folder!</p>
-          <p class="w98-sign">Love,<br>August Blu</p>
-          <div class="w98-btnrow"><button class="btn w98-enter" data-close="welcome">come in</button></div>
+        <input id="welcome-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <div class="w98-btnrow">
+          <span id="welcome-status" class="w98-status"></span>
+          <button class="btn w98-enter" id="welcome-enter">come in</button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- anti-flash: returning visitors skip the gate before first paint -->
+  <script>(function(){try{if(localStorage.getItem("augustblu_visitor")){document.documentElement.classList.add("entered");var w=document.getElementById("welcome");if(w)w.classList.remove("open");var s=document.getElementById("entry-shade");if(s)s.style.display="none";}}catch(e){}})();</script>
 
   <!-- WINDOWS (injected by render.js) -->
   <div id="windows-root"></div>

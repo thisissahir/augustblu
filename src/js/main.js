@@ -11,6 +11,7 @@ import { initParticles } from "./wallpaper.js";
 import { initAudioPlayer } from "./audioPlayer.js";
 import { initMemories } from "./memories.js";
 import { initMessageWall } from "./messageWall.js";
+import { initEntryGate } from "./entryGate.js";
 
 function boot() {
   // build DOM from config
@@ -29,13 +30,9 @@ function boot() {
   initMessageWall();
   startClock();
 
-  // welcome focused on load
-  focusWin("welcome");
-  renderTasks("welcome");
-
-  // start-menu "Enter" / welcome close handled by data-close already
-  const enter = document.querySelector('[data-enter]');
-  if (enter) enter.addEventListener("click", () => {});
+  // site-entry email wall (or skip for returning visitors)
+  initEntryGate();
+  renderTasks();
 }
 
 if (document.readyState === "loading") {

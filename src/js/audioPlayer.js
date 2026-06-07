@@ -4,7 +4,6 @@
    - Handles missing files gracefully (shows status, doesn't crash). */
 import { TRACKS } from "../windows/tracks.js";
 import { openWin, focusWin } from "./windowManager.js";
-import { listenerUnlocked, ensureListener } from "./listenerGate.js";
 
 let audio;
 let current = -1;
@@ -68,17 +67,8 @@ function togglePlay() {
 export function initAudioPlayer() {
   audio = new Audio();
   audio.preload = "metadata";
-
-  // Email gate: the first demo play of the visit requires an email.
-  // Wrapping play() covers every path — tile click, playlist row, ▶ button.
-  const _play = audio.play.bind(audio);
-  audio.play = function () {
-    if (listenerUnlocked()) return _play();
-    ensureListener().then((ok) => {
-      if (ok) _play().catch(() => { $("ap-status").textContent = "Press ▶ to play"; });
-    });
-    return Promise.resolve();
-  };
+  // No per-demo gate any more — access is granted at the site entry wall,
+  // so demos play freely once someone is inside.
 
   renderPlaylist();
   setNowPlaying(TRACKS[0]);
