@@ -56,7 +56,13 @@ export function initEntryGate() {
     // first time → gate is up (welcome open + shade visible by default)
     if (welcome) welcome.classList.add("open");
     if (shade) shade.style.display = "";
-    setTimeout(() => { if (emailEl) emailEl.focus(); }, 60);
+    // keep the email box ready: focus on arrival, and bring the cursor back
+    // to it if the visitor clicks anywhere outside the box (on the shade)
+    const focusEmail = () => { if (emailEl) { try { emailEl.focus(); } catch {} } };
+    focusEmail();
+    requestAnimationFrame(focusEmail);
+    setTimeout(focusEmail, 90);
+    if (shade) shade.addEventListener("click", focusEmail);
   }
 
   const enter = async () => {

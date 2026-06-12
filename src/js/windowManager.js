@@ -28,8 +28,12 @@ export function el(name) {
 export function focusWin(name) {
   const w = el(name);
   if (!w) return;
-  zTop++;
-  w.style.zIndex = zTop;
+  // The entry-gate welcome keeps its pinned z-index (9999) so it can never
+  // drop behind the full-screen shade (9998) when clicked.
+  if (name !== "welcome") {
+    zTop++;
+    w.style.zIndex = zTop;
+  }
   document.querySelectorAll(".titlebar").forEach((t) => t.classList.add("inactive"));
   const tb = w.querySelector(".titlebar");
   if (tb) tb.classList.remove("inactive");
