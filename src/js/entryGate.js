@@ -48,13 +48,13 @@ function playEntryFilm() {
   const skip = $("film-skip");
   if (!overlay || !video) return;
 
-  overlay.classList.add("on");
+  overlay.classList.add("on", "loading");   // "connecting…" box up while the reel buffers
   video.src = "/assets/campaign-film.mp4";
 
   let done = false;
   const dismiss = () => {
     if (done) return; done = true;
-    overlay.classList.remove("on", "skippable");
+    overlay.classList.remove("on", "skippable", "loading");
     try { video.pause(); video.removeAttribute("src"); video.load(); } catch {}
   };
 
@@ -62,6 +62,10 @@ function playEntryFilm() {
     video.muted = true;
     video.play().catch(() => dismiss()); // can't play at all → just go in
   });
+
+  // hide the connecting box the instant frames are rolling; bring it back on rebuffer
+  video.addEventListener("playing", () => overlay.classList.remove("loading"));
+  video.addEventListener("waiting", () => { if (!done) overlay.classList.add("loading"); });
 
   video.addEventListener("ended", dismiss, { once: true });
   video.addEventListener("error", dismiss, { once: true });
