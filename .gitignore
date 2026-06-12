@@ -32,3 +32,6 @@ Screenshot*.png
 *.aif
 *.aiff
 !public/assets/**
+
+# stray root SVGs (site assets live in public/assets)
+/*.svg
