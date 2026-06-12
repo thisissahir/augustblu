@@ -24,6 +24,7 @@ white look*.png
 Screenshot*.png
 /*.png
 *.zip
+/August Blu - Campaign Film*.html
 
 # Stray raw media dumped in the project root (audio/video sessions).
 # Site media lives under public/assets, which is re-included below.

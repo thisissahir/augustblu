@@ -136,6 +136,12 @@
     </div>
   </div>
 
+  <!-- ENTRY FILM: plays once, right after the email gate -->
+  <div id="film-overlay">
+    <div class="film-frame"><iframe id="film-iframe" title="August Blu — Campaign Film" allow="autoplay; fullscreen"></iframe></div>
+    <button id="film-skip" class="film-skip">skip ▸</button>
+  </div>
+
   <!-- anti-flash: returning visitors skip the gate before first paint -->
   <script>(function(){try{if(localStorage.getItem("augustblu_visitor")){document.documentElement.classList.add("entered");var w=document.getElementById("welcome");if(w)w.classList.remove("open");var s=document.getElementById("entry-shade");if(s)s.style.display="none";}}catch(e){}})();</script>
 

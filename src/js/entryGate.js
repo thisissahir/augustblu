@@ -38,6 +38,28 @@ function closeWelcome() {
   if (s) s.style.display = "none";
 }
 
+/* The campaign film plays once, right after a visitor enters their email. */
+function playEntryFilm() {
+  const overlay = $("film-overlay");
+  const iframe = $("film-iframe");
+  const skip = $("film-skip");
+  if (!overlay || !iframe) return;
+
+  overlay.classList.add("on");
+  iframe.src = "/campaign-film.html"; // loads + auto-plays the 7s film
+
+  let done = false;
+  const dismiss = () => {
+    if (done) return; done = true;
+    overlay.classList.remove("on", "skippable");
+    try { iframe.src = "about:blank"; } catch {} // stop the film, free memory
+  };
+  // skip becomes available shortly; auto-dismiss after unpack (~3s) + the 7s film
+  setTimeout(() => overlay.classList.add("skippable"), 1800);
+  if (skip) skip.onclick = dismiss;
+  setTimeout(dismiss, 11000);
+}
+
 export function initEntryGate() {
   const welcome = $("welcome");
   const shade = $("entry-shade");
@@ -75,6 +97,7 @@ export function initEntryGate() {
     document.documentElement.classList.add("entered");
     sendVisitorEmail(v);                       // fire-and-forget
     closeWelcome();
+    playEntryFilm();                           // play the campaign film, then reveal the site
   };
 
   btn.addEventListener("click", enter);
