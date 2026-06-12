@@ -40,6 +40,36 @@ function closeWelcome() {
   if (s) s.style.display = "none";
 }
 
+/* Play the campaign film once (native <video>), then reveal the site.
+   Called from the "come in" click, so play-with-sound is allowed. */
+function playEntryFilm() {
+  const overlay = $("film-overlay");
+  const video = $("film-video");
+  const skip = $("film-skip");
+  if (!overlay || !video) return;
+
+  overlay.classList.add("on");
+  video.src = "/assets/campaign-film.mp4";
+
+  let done = false;
+  const dismiss = () => {
+    if (done) return; done = true;
+    overlay.classList.remove("on", "skippable");
+    try { video.pause(); video.removeAttribute("src"); video.load(); } catch {}
+  };
+
+  video.play().catch(() => {            // autoplay-with-sound blocked → mute and retry
+    video.muted = true;
+    video.play().catch(() => dismiss()); // can't play at all → just go in
+  });
+
+  video.addEventListener("ended", dismiss, { once: true });
+  video.addEventListener("error", dismiss, { once: true });
+  setTimeout(() => overlay.classList.add("skippable"), 1200);
+  if (skip) skip.onclick = dismiss;
+  setTimeout(dismiss, 30000);           // hard safety net
+}
+
 export function initEntryGate() {
   const welcome = $("welcome");
   const shade = $("entry-shade");
@@ -75,11 +105,9 @@ export function initEntryGate() {
     btn.disabled = true; statusEl.textContent = "Opening the door…";
     try { localStorage.setItem(STORE, v); } catch {}
     document.documentElement.classList.add("entered");
-    sendVisitorEmail(v);                       // keepalive POST, survives the navigation
-    // Play the campaign film as a full page (the bundler breaks inside an
-    // iframe). The film returns to the site ('/') when it finishes; by then
-    // localStorage marks them entered, so the gate is skipped.
-    window.location.href = "/campaign-film.html";
+    sendVisitorEmail(v);                       // fire-and-forget
+    closeWelcome();
+    playEntryFilm();                           // play the campaign film, then reveal the site
   };
 
   btn.addEventListener("click", enter);

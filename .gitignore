@@ -36,3 +36,6 @@ Screenshot*.png
 
 # stray root SVGs (site assets live in public/assets)
 /*.svg
+
+# stray root media
+/*.mp4
