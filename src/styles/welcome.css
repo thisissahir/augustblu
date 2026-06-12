@@ -56,8 +56,21 @@
   .w98-h{ font-size:18px; color:#10215e; margin-bottom:10px; font-weight:bold; }
   .w98-content p{ font-size:13px; line-height:1.55; margin-bottom:11px; color:#1a1a1a; }
   .w98-sign{ font-style:italic; color:#10215e; }
-  .w98-btnrow{ margin-top:auto; padding-top:6px; display:flex; align-items:center; gap:10px; justify-content:flex-end; }
-  .w98-enter{ min-width:96px; padding:6px 18px; }
+  .w98-btnrow{ margin-top:auto; padding-top:10px; display:flex; justify-content:center; }
+  /* bigger, centred, brand-blue "come in" */
+  .w98-enter{
+    min-width:180px; padding:13px 34px;
+    font-size:16px; font-weight:bold; letter-spacing:0.5px;
+    color:#fff; background:#2645e8; cursor:pointer;
+    border-top:2px solid #6f86ff; border-left:2px solid #6f86ff;
+    border-right:2px solid #14237a; border-bottom:2px solid #14237a;
+  }
+  .w98-enter:hover{ background:#2f50f2; }
+  .w98-enter:active{
+    border-top:2px solid #14237a; border-left:2px solid #14237a;
+    border-right:2px solid #6f86ff; border-bottom:2px solid #6f86ff;
+    padding:14px 33px 12px 35px;
+  }
 
   /* ----- email field (the gate) ----- */
   .w98-field{
@@ -68,7 +81,7 @@
   }
   .w98-ico{ font-size:15px; }
   .w98-input{ flex:1; border:none; outline:none; background:transparent; font-family:inherit; font-size:14px; color:#000; }
-  .w98-status{ flex:1; text-align:left; font-size:11px; color:#a00; }
+  .w98-status{ text-align:center; font-size:11px; color:#a00; min-height:14px; margin-top:4px; }
 
   /* gate vs. info: returning visitors reopening "About" see a greeting, not the form */
   .w98-info-msg{ display:none; }
