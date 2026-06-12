@@ -16,8 +16,10 @@ export function hasEntered() {
 async function sendVisitorEmail(email) {
   if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY.startsWith("YOUR-")) return;
   try {
+    // keepalive: lets the POST finish even though we navigate away to the film
     await fetch("https://api.web3forms.com/submit", {
       method: "POST",
+      keepalive: true,
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
@@ -36,28 +38,6 @@ function closeWelcome() {
   if (w) w.classList.remove("open");
   const s = $("entry-shade");
   if (s) s.style.display = "none";
-}
-
-/* The campaign film plays once, right after a visitor enters their email. */
-function playEntryFilm() {
-  const overlay = $("film-overlay");
-  const iframe = $("film-iframe");
-  const skip = $("film-skip");
-  if (!overlay || !iframe) return;
-
-  overlay.classList.add("on");
-  iframe.src = "/campaign-film.html"; // loads + auto-plays the 7s film
-
-  let done = false;
-  const dismiss = () => {
-    if (done) return; done = true;
-    overlay.classList.remove("on", "skippable");
-    try { iframe.src = "about:blank"; } catch {} // stop the film, free memory
-  };
-  // skip becomes available shortly; auto-dismiss after unpack (~3s) + the 7s film
-  setTimeout(() => overlay.classList.add("skippable"), 1800);
-  if (skip) skip.onclick = dismiss;
-  setTimeout(dismiss, 11000);
 }
 
 export function initEntryGate() {
@@ -95,9 +75,11 @@ export function initEntryGate() {
     btn.disabled = true; statusEl.textContent = "Opening the door…";
     try { localStorage.setItem(STORE, v); } catch {}
     document.documentElement.classList.add("entered");
-    sendVisitorEmail(v);                       // fire-and-forget
-    closeWelcome();
-    playEntryFilm();                           // play the campaign film, then reveal the site
+    sendVisitorEmail(v);                       // keepalive POST, survives the navigation
+    // Play the campaign film as a full page (the bundler breaks inside an
+    // iframe). The film returns to the site ('/') when it finishes; by then
+    // localStorage marks them entered, so the gate is skipped.
+    window.location.href = "/campaign-film.html";
   };
 
   btn.addEventListener("click", enter);
