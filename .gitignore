@@ -40,3 +40,7 @@ Screenshot*.png
 
 # stray root media
 /*.mp4
+
+# source/reference files kept locally (their content ships via index.html + src/)
+/landing.html
+/WHAT IS ANTI POP.txt

@@ -14,6 +14,10 @@ import { initMessageWall } from "./messageWall.js";
 import { initEntryGate } from "./entryGate.js";
 
 function boot() {
+  // entry guard FIRST — bounce non-logged-in visitors to the landing (/)
+  // before we render anything, so the desktop never flashes for them.
+  if (initEntryGate() === false) return;
+
   // build DOM from config
   renderWindows();
   renderIcons();
@@ -30,8 +34,6 @@ function boot() {
   initMessageWall();
   startClock();
 
-  // site-entry email wall (or skip for returning visitors)
-  initEntryGate();
   renderTasks();
 }
 
