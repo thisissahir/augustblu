@@ -35,6 +35,15 @@ function boot() {
   startClock();
 
   renderTasks();
+
+  // Instagram window blockquote is added above; ask Instagram's embed.js to render
+  // it (poll a few times since embed.js loads async).
+  let igTries = 0;
+  const renderIG = () => {
+    if (window.instgrm && window.instgrm.Embeds) { window.instgrm.Embeds.process(); }
+    else if (++igTries < 25) { setTimeout(renderIG, 300); }
+  };
+  renderIG();
 }
 
 if (document.readyState === "loading") {

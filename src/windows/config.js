@@ -165,7 +165,9 @@ export const WINDOWS = [
         <a class="ig-btn ig-btn-sm" href="https://www.instagram.com/augustblu.wav/" target="_blank" rel="noopener noreferrer">Follow</a>
       </div>
       <div class="ig-feed-wrap">
-        <iframe class="ig-feed lightwidget-widget" src="https://lightwidget.com/widgets/e2bb393c9d87574b8c2331c0446993e8.html" scrolling="no" allowtransparency="true" title="August Blu on Instagram"></iframe>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZgwq--DRwA/?utm_source=ig_embed" data-instgrm-version="14">
+          <a href="https://www.instagram.com/p/DZgwq--DRwA/" target="_blank" rel="noopener noreferrer">View this post on Instagram</a>
+        </blockquote>
       </div>
       <div class="ig-foot"><a class="ig-btn" href="https://www.instagram.com/augustblu.wav/" target="_blank" rel="noopener noreferrer">Open on Instagram&nbsp;↗</a></div>`,
   },
