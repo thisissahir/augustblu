@@ -27,7 +27,6 @@ const PHOTOS = [
   "/assets/photos/series1/10.jpg",
   "/assets/photos/series1/11.jpg",
   "/assets/photos/series1/12.jpg",
-  "/assets/photos/series1/13.jpg",
   "/assets/photos/series1/14.jpg",
   "/assets/photos/series1/15.jpg",
   "/assets/photos/series1/16.jpg",
