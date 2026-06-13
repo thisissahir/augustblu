@@ -171,6 +171,28 @@ export const WINDOWS = [
       </div>
       <div class="ig-foot"><a class="ig-btn" href="https://www.instagram.com/augustblu.wav/" target="_blank" rel="noopener noreferrer">Open on Instagram&nbsp;↗</a></div>`,
   },
+  {
+    id: "youtube",
+    icon: `<svg class="ic-img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.5" y="5" width="21" height="14" rx="4.2" fill="#FF0000"/><path d="M10 8.5l6.2 3.5L10 15.5z" fill="#fff"/></svg>`,
+    title: "YouTube",
+    width: 600, top: 90, left: 240, showOnDesktop: true,
+    menu: ["File", "Edit", "View", "Help"],
+    status: ["youtube.com/@AugustBlu", "August Blu"],
+    body: `
+      <div class="ie-bar"><span class="ie-lock">🔒</span> https://www.youtube.com/@AugustBlu</div>
+      <div class="ig-head">
+        <span class="yt-ava">▶</span>
+        <div class="ig-meta">
+          <div class="ig-handle">August Blu</div>
+          <div class="ig-name">latest videos · @AugustBlu</div>
+        </div>
+        <a class="ig-btn ig-btn-sm yt-btn" href="https://www.youtube.com/@AugustBlu?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscribe</a>
+      </div>
+      <div class="yt-wrap">
+        <iframe class="yt-feed" src="https://www.youtube.com/embed/videoseries?list=UUqXfgpA123dgkY7jADWcFLA" title="August Blu on YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="ig-foot"><a class="ig-btn yt-btn" href="https://www.youtube.com/@AugustBlu" target="_blank" rel="noopener noreferrer">Open on YouTube&nbsp;↗</a></div>`,
+  },
   /* The media player — not on the desktop grid; opened from Demos tiles + Start menu */
   {
     id: "player", icon: "🎵", title: "August Blu — Media Player",
