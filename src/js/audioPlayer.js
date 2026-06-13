@@ -137,11 +137,19 @@ export function autoStartPlayer() {
 
   const start = () => audio.play();
   const armGesture = () => {
-    const go = () => { start().catch(() => {}); off(); };
+    // phones block autoplay-with-sound → tell the listener, then start on the
+    // first tap anywhere OUTSIDE the player (taps on the player's own controls
+    // are left to the controls, so ▶ doesn't double-trigger and pause itself).
+    const s = $("ap-status"); if (s) s.textContent = "Press ▶ to play";
+    const go = (e) => {
+      if (e && e.target && e.target.closest && e.target.closest("#win-player")) return;
+      start().catch(() => {});
+      off();
+    };
     const off = () => ["pointerdown", "keydown", "touchstart"]
-      .forEach((e) => window.removeEventListener(e, go));
+      .forEach((ev) => window.removeEventListener(ev, go));
     ["pointerdown", "keydown", "touchstart"]
-      .forEach((e) => window.addEventListener(e, go, { passive: true }));
+      .forEach((ev) => window.addEventListener(ev, go, { passive: true }));
   };
 
   const p = start();
