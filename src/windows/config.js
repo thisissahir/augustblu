@@ -149,6 +149,23 @@ export const WINDOWS = [
         </div>
       </div>`,
   },
+  {
+    id: "instagram", icon: "📸", title: "Instagram",
+    width: 420, top: 90, left: 300, showOnDesktop: true,
+    menu: ["File", "Edit", "View", "Help"],
+    status: ["instagram.com/augustblu.wav", "August Blu"],
+    body: `
+      <div class="ie-bar"><span class="ie-lock">🔒</span> https://www.instagram.com/augustblu.wav/</div>
+      <div class="ig-card">
+        <div class="ig-cover"></div>
+        <div class="ig-ava">📸</div>
+        <div class="ig-handle">@augustblu.wav</div>
+        <div class="ig-name">August Blu · anti-pop</div>
+        <p class="ig-bio">music for the people who feel invisible</p>
+        <a class="ig-btn" href="https://www.instagram.com/augustblu.wav/" target="_blank" rel="noopener noreferrer">Open on Instagram&nbsp;↗</a>
+        <p class="ig-note">opens in a new tab — Instagram can't be shown inside another site</p>
+      </div>`,
+  },
   /* The media player — not on the desktop grid; opened from Demos tiles + Start menu */
   {
     id: "player", icon: "🎵", title: "August Blu — Media Player",
