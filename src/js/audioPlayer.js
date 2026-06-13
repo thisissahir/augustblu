@@ -131,6 +131,8 @@ export function playTrack(i) {
    auto-advances + loops on its own (handled by the "ended" listener). */
 export function autoStartPlayer() {
   if (!audio || !TRACKS.length) return;
+  openWin("player");                    // show the player so fans see the source + controls
+  focusWin("player");
   load(0, false);                       // cue track 1, show it in the player + tray
 
   const start = () => audio.play();

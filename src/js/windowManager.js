@@ -2,7 +2,7 @@
    Open / close / minimize / maximize / focus + z-order.
    Emits nothing; other modules call these directly. */
 
-export const WINS = ["demos", "gallery", "memories", "journal", "documents", "antipop", "wall", "instagram", "youtube", "welcome"];
+export const WINS = ["demos", "gallery", "memories", "journal", "documents", "antipop", "wall", "instagram", "youtube", "player", "welcome"];
 
 export const TITLES = {
   demos: "🖥️ Demos",
@@ -14,6 +14,7 @@ export const TITLES = {
   wall: "📌 The Wall",
   instagram: "📸 Instagram",
   youtube: "▶️ YouTube",
+  player: "🎵 Media Player",
   welcome: "✴️ Welcome",
 };
 
