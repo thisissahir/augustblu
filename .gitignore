@@ -44,3 +44,6 @@ Screenshot*.png
 # source/reference files kept locally (their content ships via index.html + src/)
 /landing.html
 /WHAT IS ANTI POP.txt
+
+# stray root text drops (content is embedded in the build)
+/*.txt

@@ -193,6 +193,34 @@ export const WINDOWS = [
       </div>
       <div class="ig-foot"><a class="ig-btn yt-btn" href="https://www.youtube.com/@AugustBlu" target="_blank" rel="noopener noreferrer">Open on YouTube&nbsp;↗</a></div>`,
   },
+  {
+    id: "antipop", icon: "❓", title: "What is Anti-Pop?",
+    width: 560, top: 80, left: 200, showOnDesktop: true,
+    menu: ["File", "Edit", "View", "Help"],
+    status: ["read me", "August Blu"],
+    body: `
+      <h2>ANTI-POP — in my words</h2>
+
+      <h3>It's not a genre</h3>
+      <p>Anti-pop isn't me refusing to sound like pop. I make danceable, melodic music. Disco rhythms, dreamy synths, vocoders. Some of it could sit right next to pop and hold its own. That's the point. I'm not rejecting the sound of pop. I'm rejecting the system pop lives inside. The sound is whatever the song needs. What's "anti" is everything around the song: how I make it, why I make it, how it reaches you, and what it asks of you when it arrives.</p>
+
+      <h3>What pop actually is now</h3>
+      <p>"Pop" stopped meaning popular music a long time ago. Now it means music optimized for a machine. The hook by second three because the skip-rate algorithm demands it. The 2:40 runtime because playlists reward it. The TikTok bridge written before the verse even exists. Songs released on a calendar set by pitch deadlines instead of by when the song is true. The artist turned into a content schedule. You, turned into a retention metric.</p>
+      <p>Nobody in that chain is evil. The machine just doesn't see people. It sees inventory. Artists become suppliers. Listeners become engagement. And the feeling music exists to carry gets squeezed out of it.</p>
+      <p>Anti-pop is my name for the alternative: music made with love and integrity, released in a way that refuses to treat you like a unit of attention.</p>
+
+      <h3>3 steps</h3>
+      <p><b>1. How I make it.</b> A song is finished when it's true, not when it fits a format. I don't write for the algorithm's first three seconds. I don't cut the grief or the joy out of a song because it might test poorly. Not polished, just true. That's the standard.</p>
+      <p><b>2. How I release it.</b> I'm not on Spotify. I'm not on Apple Music. On purpose. Streaming pays fractions of a cent, trains you to treat music like free wallpaper, and puts a platform between me and you. Then the platform owns us both. No. My music lives only where you choose to come get it: augustblu.com, Bandcamp, YouTube, the stage. The inconvenience is the filter. If you typed the URL, if you bought the file, if you showed up, you chose this. A thousand of you means more to me than a million accidental streams. Taking my power back means owning my masters, owning my schedule, and never letting an algorithm decide whether you and I get to reach each other.</p>
+      <p><b>3. How you listen.</b> The attention economy profits when you feel nothing deeply. Skim, scroll, numb, repeat. I'm asking for the opposite: stop, and feel it. That's why my website is a world and not a landing page. Why the demos live behind a door. Why there's a journal and a wall you can write on. Being here is an act, not an impression. You don't find me by accident.</p>
+      <p><b>You found me.</b></p>
+
+      <h3>Why I stay outside the clutter</h3>
+      <p>Every artist is fighting for the same shelf. The same playlists, the same release Friday, the same feed. On that shelf everyone is clutter: one of a hundred thousand songs uploaded that day. So I refuse the shelf. When my music isn't where everything else is, it can't be compared, skipped, or buried. The question stops being "why should I stream this?" and becomes "what is this, and why isn't it where everything else is?"</p>
+      <p>That question is where we begin.</p>
+      <p>Anti-pop is me taking my power back and using it to make you feel something real. Then handing that power to you, one listener at a time.</p>
+      <p style="margin-top:14px;font-style:italic;color:#10215e">Love,<br><b>August Blu</b></p>`,
+  },
   /* The media player — not on the desktop grid; opened from Demos tiles + Start menu */
   {
     id: "player", icon: "🎵", title: "August Blu — Media Player",
