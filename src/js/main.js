@@ -8,7 +8,7 @@ import { initDrag } from "./drag.js";
 import { initStartMenu } from "./startMenu.js";
 import { initDesktop } from "./desktop.js";
 import { initParticles } from "./wallpaper.js";
-import { initAudioPlayer } from "./audioPlayer.js";
+import { initAudioPlayer, autoStartPlayer } from "./audioPlayer.js";
 import { initMemories } from "./memories.js";
 import { initMessageWall } from "./messageWall.js";
 import { initEntryGate } from "./entryGate.js";
@@ -35,6 +35,9 @@ function boot() {
   startClock();
 
   renderTasks();
+
+  // background music: auto-play the demos the moment a fan lands on the desktop
+  autoStartPlayer();
 
   // Instagram window blockquote is added above; ask Instagram's embed.js to render
   // it (poll a few times since embed.js loads async).

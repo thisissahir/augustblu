@@ -122,3 +122,27 @@ export function playTrack(i) {
   focusWin("player");
   load(i, true);
 }
+
+/* Auto-start the demos in the background once a fan lands on the desktop.
+   Tries to play immediately (browsers usually allow it here, since the intro
+   film just played with sound on the same domain). If autoplay-with-sound is
+   blocked, it starts on the visitor's very first interaction instead — so
+   there's always music, never a silent dead-end. From there the player
+   auto-advances + loops on its own (handled by the "ended" listener). */
+export function autoStartPlayer() {
+  if (!audio || !TRACKS.length) return;
+  load(0, false);                       // cue track 1, show it in the player + tray
+
+  const start = () => audio.play();
+  const armGesture = () => {
+    const go = () => { start().catch(() => {}); off(); };
+    const off = () => ["pointerdown", "keydown", "touchstart"]
+      .forEach((e) => window.removeEventListener(e, go));
+    ["pointerdown", "keydown", "touchstart"]
+      .forEach((e) => window.addEventListener(e, go, { passive: true }));
+  };
+
+  const p = start();
+  if (p && p.catch) p.catch(armGesture);  // blocked now → play on first interaction
+  else armGesture();
+}
