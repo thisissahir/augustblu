@@ -151,20 +151,23 @@ export const WINDOWS = [
   },
   {
     id: "instagram", icon: "📸", title: "Instagram",
-    width: 420, top: 90, left: 300, showOnDesktop: true,
+    width: 460, top: 80, left: 280, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
     status: ["instagram.com/augustblu.wav", "August Blu"],
     body: `
       <div class="ie-bar"><span class="ie-lock">🔒</span> https://www.instagram.com/augustblu.wav/</div>
-      <div class="ig-card">
-        <div class="ig-cover"></div>
-        <div class="ig-ava">📸</div>
-        <div class="ig-handle">@augustblu.wav</div>
-        <div class="ig-name">August Blu · anti-pop</div>
-        <p class="ig-bio">music for the people who feel invisible</p>
-        <a class="ig-btn" href="https://www.instagram.com/augustblu.wav/" target="_blank" rel="noopener noreferrer">Open on Instagram&nbsp;↗</a>
-        <p class="ig-note">opens in a new tab — Instagram can't be shown inside another site</p>
-      </div>`,
+      <div class="ig-head">
+        <span class="ig-ava">📸</span>
+        <div class="ig-meta">
+          <div class="ig-handle">@augustblu.wav</div>
+          <div class="ig-name">August Blu · anti-pop · music for the people who feel invisible</div>
+        </div>
+        <a class="ig-btn ig-btn-sm" href="https://www.instagram.com/augustblu.wav/" target="_blank" rel="noopener noreferrer">Follow</a>
+      </div>
+      <div class="ig-feed-wrap">
+        <iframe class="ig-feed lightwidget-widget" src="https://lightwidget.com/widgets/e2bb393c9d87574b8c2331c0446993e8.html" scrolling="no" allowtransparency="true" title="August Blu on Instagram"></iframe>
+      </div>
+      <div class="ig-foot"><a class="ig-btn" href="https://www.instagram.com/augustblu.wav/" target="_blank" rel="noopener noreferrer">Open on Instagram&nbsp;↗</a></div>`,
   },
   /* The media player — not on the desktop grid; opened from Demos tiles + Start menu */
   {
