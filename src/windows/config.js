@@ -150,7 +150,7 @@ export const WINDOWS = [
       </div>`,
   },
   {
-    id: "instagram", icon: "📸", title: "Instagram",
+    id: "instagram", icon: `<img class="ic-img" src="/assets/ig-icon.png" alt="">`, title: "Instagram",
     width: 460, top: 80, left: 280, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
     status: ["instagram.com/augustblu.wav", "August Blu"],

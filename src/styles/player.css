@@ -281,6 +281,11 @@ input[type=range].ap-range::-moz-range-thumb{
 .wall-row{ display:flex; align-items:center; gap:10px; }
 .wall-status{ flex:1; font-size:11px; color:#0a5a0a; }
 
+/* image used in place of an emoji icon (desktop glyph, titlebar, start menu) —
+   sized to 1em so it matches the surrounding text like an emoji would */
+.ic-img{ height:1em; width:1em; object-fit:contain; vertical-align:-0.18em; }
+.desk-icon .glyph .ic-img{ height:34px; width:34px; vertical-align:0; }
+
 /* ===================== INSTAGRAM ===================== */
 .ie-bar{
   display:flex; align-items:center; gap:6px; font-size:11px; color:#333;
