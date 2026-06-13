@@ -6,7 +6,6 @@ import { TRACKS } from "./tracks.js";
 import { JOURNAL } from "./journal.js";
 import { DOCUMENTS } from "./documents.js";
 import { ROLLS } from "./memories.js";
-import { FREEBIES, FREEBIE_ICON } from "./freebies.js";
 
 const demoTiles = TRACKS.map((t, i) => `
   <div class="demo-card" data-track="${i}">
@@ -65,12 +64,6 @@ const rollFolders = ROLLS.map((r) => `
     <div class="mem-folder-count">${r.photos.length} item(s)</div>
   </div>`).join("");
 
-const freebieRows = FREEBIES.map((x) => `
-  <div class="free-row">
-    <span class="free-ico">${FREEBIE_ICON[x.type] || "📦"}</span>
-    <div class="free-meta"><div class="free-title">${x.title}</div><div class="free-sub">${x.meta}</div></div>
-    <a class="free-dl" href="${x.file}" download>Download</a>
-  </div>`).join("");
 
 export const WINDOWS = [
   {
@@ -138,27 +131,21 @@ export const WINDOWS = [
       </div>`,
   },
   {
-    id: "freebies", icon: "🎁", title: "Freebies",
-    width: 640, top: 130, left: 230, showOnDesktop: true,
+    id: "wall", icon: "📌", title: "The Wall",
+    width: 660, top: 110, left: 200, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
-    status: [`${FREEBIES.length} file(s)`, "August Blu"],
+    status: ["everyone's messages for August Blu", "August Blu"],
     body: `
-      <h2>Freebies</h2>
-      <p>Free to take. Songs, snippets, clips.</p>
-      <div class="free-list">${freebieRows}</div>
-
-      <div class="wall">
-        <h3 class="wall-head">The Wall</h3>
-        <p class="wall-sub">Leave a mark. Messages are read and put up by August Blu.</p>
-        <div class="wall-list" id="wall-list"><div class="wall-empty">Loading…</div></div>
-        <div class="wall-compose">
-          <input id="wall-name" class="wall-input" type="text" placeholder="your name" maxlength="60">
-          <textarea id="wall-text" class="wall-input wall-textarea" placeholder="write something…" maxlength="600"></textarea>
-          <input id="wall-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-          <div class="wall-row">
-            <span id="wall-status" class="wall-status"></span>
-            <button id="wall-send" class="btn">📌 Put it up</button>
-          </div>
+      <h2>The Wall</h2>
+      <p>Everyone's messages for August Blu. Leave a mark — every note is read and pinned up by August Blu.</p>
+      <div class="wall-list" id="wall-list"><div class="wall-empty">Loading…</div></div>
+      <div class="wall-compose">
+        <input id="wall-name" class="wall-input" type="text" placeholder="your name" maxlength="60">
+        <textarea id="wall-text" class="wall-input wall-textarea" placeholder="write something to August Blu…" maxlength="600"></textarea>
+        <input id="wall-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <div class="wall-row">
+          <span id="wall-status" class="wall-status"></span>
+          <button id="wall-send" class="btn">📌 Put it up</button>
         </div>
       </div>`,
   },
