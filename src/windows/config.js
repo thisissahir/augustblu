@@ -7,12 +7,14 @@ import { JOURNAL } from "./journal.js";
 import { DOCUMENTS } from "./documents.js";
 import { ROLLS } from "./memories.js";
 
-const demoTiles = TRACKS.map((t, i) => `
+const demoTiles = TRACKS.length
+  ? TRACKS.map((t, i) => `
   <div class="demo-card" data-track="${i}">
     <img class="dc-cover" src="${t.cover}" alt="${t.title}">
     <div class="dc-title">${t.title}</div>
     <div class="dc-play">▶ play demo</div>
-  </div>`).join("");
+  </div>`).join("")
+  : `<div class="demo-empty">Two new demos land here soon.<br><span>You'll be the first to hear them.</span></div>`;
 
 const PHOTOS = [
   "/assets/photos/series1/01.jpg",
@@ -69,10 +71,10 @@ export const WINDOWS = [
     id: "demos", icon: "🖥️", title: "Demos",
     width: 620, top: 70, left: 110, showOnDesktop: true,
     menu: ["File", "Edit", "View", "Help"],
-    status: [`${TRACKS.length} track(s)`, "August Blu"],
+    status: [TRACKS.length ? `${TRACKS.length} track(s)` : "coming soon", "August Blu"],
     body: `
       <h2>Demos</h2>
-      <p>Three in progress. Click any cover to open the player.</p>
+      <p>${TRACKS.length ? "Click any cover to open the player." : "Fresh off the desk — landing here soon."}</p>
       <div class="demo-grid">${demoTiles}</div>`,
   },
   {

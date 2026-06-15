@@ -96,6 +96,8 @@ input[type=range].ap-range::-moz-range-thumb{
   display:block;
 }
 .demo-card:hover .dc-cover{ box-shadow:0 0 10px rgba(38,69,232,0.7); }
+.demo-empty{ grid-column:1/-1; text-align:center; padding:34px 16px; color:#444; font-size:13px; }
+.demo-empty span{ display:block; margin-top:6px; font-size:11px; color:#888; }
 .demo-card .dc-title{ font-size:11px; margin-top:4px; font-weight:bold; }
 .demo-card .dc-play{ font-size:10px; color:#2645e8; }
 @media (max-width:600px){ .demo-grid{ grid-template-columns:repeat(2,1fr);} }

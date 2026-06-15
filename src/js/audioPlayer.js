@@ -71,7 +71,8 @@ export function initAudioPlayer() {
   // so demos play freely once someone is inside.
 
   renderPlaylist();
-  setNowPlaying(TRACKS[0]);
+  if (TRACKS.length) setNowPlaying(TRACKS[0]);
+  else { const t = $("ap-title"); if (t) t.textContent = "—"; const s = $("ap-status"); if (s) s.textContent = "Demos coming soon"; }
 
   $("ap-play").onclick = togglePlay;
   $("ap-prev").onclick = () => load((current <= 0 ? TRACKS.length : current) - 1, true);

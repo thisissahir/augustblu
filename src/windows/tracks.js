@@ -3,25 +3,8 @@
    Until the mp3 exists the player shows the track but reports "no file yet". */
 
 export const TRACKS = [
-  {
-    id: "t1",
-    title: "All Is Love",
-    subtitle: "August Blu — demo",
-    cover: "/assets/covers/u-09.png",
-    src: "/assets/audio/demo-01.mp3",
-  },
-  {
-    id: "t2",
-    title: "Away, A Way",
-    subtitle: "August Blu — demo",
-    cover: "/assets/covers/u-05.png",
-    src: "/assets/audio/demo-02.mp3",
-  },
-  {
-    id: "t3",
-    title: "Tinted Windows (Acoustic)",
-    subtitle: "August Blu — demo",
-    cover: "/assets/covers/u-10.png",
-    src: "/assets/audio/demo-03.mp3",
-  },
+  // Cleared for launch — two new demos drop here soon.
+  // Add each as: { id, title, subtitle, cover, src } and drop its mp3 in
+  // public/assets/audio/ (e.g. /assets/audio/demo-01.mp3). Covers can reuse
+  // /assets/covers/u-09.png … u-10.png (the logo variations).
 ];

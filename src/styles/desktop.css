@@ -40,3 +40,28 @@
     padding:0 2px;
   }
   .desk-icon.selected .label{ background:var(--navy); }
+
+  /* ===== Last-updated sticky note (desktop) ===== */
+  #lastup{
+    position:absolute; top:16px; right:16px; z-index:2;
+    width:214px; padding:10px 12px;
+    background:#fff7c4; color:#2a2a2a;
+    border:1px solid #d8c878;
+    box-shadow:2px 4px 10px rgba(0,0,0,0.4);
+    transform:rotate(1.4deg);
+    font-size:11px;
+  }
+  #lastup .lu-head{
+    font-size:9px; font-weight:bold; letter-spacing:1.5px; color:#8a7320;
+    border-bottom:1px dashed #cdbb72; padding-bottom:5px; margin-bottom:6px;
+  }
+  #lastup .lu-date{
+    font-family:"Courier New",monospace; font-size:12px; font-weight:bold;
+    color:#10215e; margin-bottom:6px;
+  }
+  #lastup .lu-note{ font-size:11px; line-height:1.45; color:#333; }
+  @media (max-width:600px){
+    #lastup{ width:150px; top:8px; right:8px; padding:8px 9px; transform:rotate(1deg); }
+    #lastup .lu-date{ font-size:11px; }
+    #lastup .lu-note{ font-size:10px; }
+  }
