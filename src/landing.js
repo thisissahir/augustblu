@@ -169,8 +169,9 @@ async function submitEmail(){
   if(CONFIG.WEB3FORMS_KEY){
     fetch("https://api.web3forms.com/submit", {
       method:"POST",
+      keepalive:true, // finish even if we navigate to the film/desktop
       headers:{ "Content-Type":"application/json", "Accept":"application/json" },
-      body: JSON.stringify({ access_key: CONFIG.WEB3FORMS_KEY, subject:"BLU_OS login — new listener", from_name:"augustblu.com gate", email })
+      body: JSON.stringify({ access_key: CONFIG.WEB3FORMS_KEY, subject:"BLU_OS login — new listener", from_name:"augustblu.com gate", email, botcheck:"" })
     }).catch(()=>{});
   }
   runConnect();
