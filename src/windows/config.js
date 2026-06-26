@@ -148,6 +148,7 @@ export const WINDOWS = [
           <span id="wall-status" class="wall-status"></span>
           <button id="wall-send" class="btn">📌 Put it up</button>
         </div>
+        <p class="wall-note">Every note is read by August Blu before it goes up, so yours won't appear right away — but it's been received. 💙</p>
       </div>`,
   },
   {
