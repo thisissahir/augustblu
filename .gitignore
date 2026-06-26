@@ -48,3 +48,8 @@ Screenshot*.png
 
 # stray root text drops (content is embedded in the build)
 /*.txt
+
+# stray local video/source drops (not part of the site build)
+/VISUAL MOVING/
+*.mp4
+!public/assets/**
