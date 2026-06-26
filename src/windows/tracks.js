@@ -5,16 +5,9 @@
 export const TRACKS = [
   {
     id: "t1",
-    title: "Tinted Windows",
-    subtitle: "August Blu — demo",
-    cover: "/assets/covers/u-10.png",
-    src: "/assets/audio/demo-01.mp3",
-  },
-  {
-    id: "t2",
     title: "Tinted Windows (Acoustic)",
     subtitle: "August Blu — demo",
-    cover: "/assets/covers/u-07.png",
-    src: "/assets/audio/demo-02.mp3",
+    cover: "/assets/covers/tinted-windows.jpg",
+    src: "/assets/audio/demo-01.mp3",
   },
 ];
