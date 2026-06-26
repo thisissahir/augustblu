@@ -1,8 +1,8 @@
-/* messageWall.js — moderated public wall (lives in the Freebies window).
-   Visitors submit { name, message }; rows insert as approved=false (pending).
-   The wall reads only approved=true rows. Moderation happens in the Supabase
-   dashboard (flip `approved` to true). Uses Supabase's REST API directly —
-   no SDK / no extra dependency, just fetch(). */
+/* messageWall.js — public wall (lives in the Wall window).
+   Visitors submit { name, message } and it appears on the wall immediately.
+   Reads every row, newest first. Uses Supabase's REST API directly —
+   no SDK / no extra dependency, just fetch(). (To re-enable moderation,
+   read with `approved=eq.true` and gate inserts behind an approved column.) */
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "../settings.js";
 
 const TABLE = "wall_messages";
@@ -38,7 +38,7 @@ async function loadMessages() {
   }
   try {
     const res = await fetch(
-      rest(`${TABLE}?approved=eq.true&select=name,message,created_at&order=created_at.desc&limit=100`),
+      rest(`${TABLE}?select=name,message,created_at&order=created_at.desc&limit=100`),
       { headers }
     );
     const rows = await res.json();
@@ -93,7 +93,8 @@ export function initMessageWall() {
     if (ok) {
       try { localStorage.setItem("wall_last", String(Date.now())); } catch {}
       msgEl.value = ""; nameEl.value = "";
-      status.textContent = "Thank you — your note is waiting for August Blu to put it up.";
+      status.textContent = "Thank you — your note is up on the wall. 💙";
+      loadMessages(); // show it right away
     } else {
       status.textContent = "Something went wrong — try again.";
     }

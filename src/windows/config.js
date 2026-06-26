@@ -138,7 +138,7 @@ export const WINDOWS = [
     status: ["everyone's messages for August Blu", "August Blu"],
     body: `
       <h2>The Wall</h2>
-      <p>Everyone's messages for August Blu. Leave a mark — every note is read and pinned up by August Blu.</p>
+      <p>Everyone's messages for August Blu. Leave a mark — your note goes straight up on the wall.</p>
       <div class="wall-list" id="wall-list"><div class="wall-empty">Loading…</div></div>
       <div class="wall-compose">
         <input id="wall-name" class="wall-input" type="text" placeholder="your name" maxlength="60">
@@ -148,7 +148,7 @@ export const WINDOWS = [
           <span id="wall-status" class="wall-status"></span>
           <button id="wall-send" class="btn">📌 Put it up</button>
         </div>
-        <p class="wall-note">Every note is read by August Blu before it goes up, so yours won't appear right away — but it's been received. 💙</p>
+        <p class="wall-hint">Your note goes straight up on the wall for everyone to see — be kind. 💙</p>
       </div>`,
   },
   {

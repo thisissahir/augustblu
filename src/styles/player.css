@@ -282,7 +282,7 @@ input[type=range].ap-range::-moz-range-thumb{
 .wall-textarea{ resize:vertical; min-height:50px; }
 .wall-row{ display:flex; align-items:center; gap:10px; }
 .wall-status{ flex:1; font-size:11px; color:#0a5a0a; }
-.wall-note{ margin:2px 0 0; font-size:11px; line-height:1.45; color:#7a6a4e; font-style:italic; }
+.wall-hint{ margin:4px 0 0; font-size:11px; line-height:1.45; color:#555; font-style:italic; }
 
 /* image used in place of an emoji icon (desktop glyph, titlebar, start menu) —
    sized to 1em so it matches the surrounding text like an emoji would */
