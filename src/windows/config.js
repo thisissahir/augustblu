@@ -18,7 +18,6 @@ const demoTiles = TRACKS.length
 
 const PHOTOS = [
   "/assets/photos/series1/01.jpg",
-  "/assets/photos/series1/02.jpg",
   "/assets/photos/series1/03.jpg",
   "/assets/photos/series1/04.jpg",
   "/assets/photos/series1/05.jpg",
