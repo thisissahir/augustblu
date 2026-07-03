@@ -20,6 +20,10 @@ export function initStartMenu() {
     it.addEventListener("click", () => { openWin(it.dataset.open); toggle(false); });
   });
 
+  document.querySelectorAll(".sm-item[data-href]").forEach((it) => {
+    it.addEventListener("click", () => { toggle(false); location.href = it.dataset.href; });
+  });
+
   const shutdown = document.getElementById("sm-shutdown");
   if (shutdown) {
     shutdown.addEventListener("click", () => {

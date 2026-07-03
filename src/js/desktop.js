@@ -5,15 +5,19 @@ import { playTrack } from "./audioPlayer.js";
 
 export function initDesktop() {
   // icon select + open
+  const activateIcon = (ic) => {
+    if (ic.dataset.href) { location.href = ic.dataset.href; return; } // link icons navigate away
+    openWin(ic.dataset.win);
+  };
   document.querySelectorAll(".desk-icon").forEach((ic) => {
     ic.addEventListener("click", (e) => {
       document.querySelectorAll(".desk-icon").forEach((x) => x.classList.remove("selected"));
       ic.classList.add("selected");
       e.stopPropagation();
     });
-    ic.addEventListener("dblclick", () => openWin(ic.dataset.win));
+    ic.addEventListener("dblclick", () => activateIcon(ic));
     // single tap opens on touch devices
-    ic.addEventListener("touchend", (e) => { e.preventDefault(); openWin(ic.dataset.win); }, { passive: false });
+    ic.addEventListener("touchend", (e) => { e.preventDefault(); activateIcon(ic); }, { passive: false });
   });
   const desk = document.getElementById("desktop");
   desk.addEventListener("click", () =>

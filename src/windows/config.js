@@ -253,4 +253,9 @@ export const WINDOWS = [
         <div id="ap-playlist" class="ap-playlist sunken"></div>
       </div>`,
   },
+  // A `link` entry has no window — its icon/Start-menu item navigates away.
+  {
+    id: "play", icon: "🎮", title: "Blu Blocks",
+    link: "/play", showOnDesktop: true,
+  },
 ];

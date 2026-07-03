@@ -11,6 +11,8 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"),
         // the Win98 desktop app at /desktop
         desktop: resolve(__dirname, "desktop/index.html"),
+        // the Blu Blocks game page at /play (embeds public/blu-blocks.html)
+        play: resolve(__dirname, "play/index.html"),
       },
     },
   },

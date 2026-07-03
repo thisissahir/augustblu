@@ -23,7 +23,7 @@ function statusbar(w) {
 
 export function renderWindows() {
   const root = document.getElementById("windows-root");
-  WINDOWS.forEach((w) => {
+  WINDOWS.filter((w) => !w.link).forEach((w) => {
     const win = document.createElement("div");
     win.className = "window raised";
     win.id = "win-" + w.id;
@@ -52,7 +52,7 @@ export function renderIcons() {
   WINDOWS.filter((w) => w.showOnDesktop).forEach((w) => {
     const ic = document.createElement("div");
     ic.className = "desk-icon";
-    ic.dataset.win = w.id;
+    if (w.link) ic.dataset.href = w.link; else ic.dataset.win = w.id;
     ic.innerHTML = `<div class="glyph">${w.icon}</div><div class="label">${w.title.split(" — ")[0]}</div>`;
     grid.appendChild(ic);
   });
@@ -64,7 +64,7 @@ export function renderStartMenu() {
   WINDOWS.filter((w) => w.showOnDesktop || w.inStartMenu).forEach((w) => {
     const it = document.createElement("div");
     it.className = "sm-item";
-    it.dataset.open = w.id;
+    if (w.link) it.dataset.href = w.link; else it.dataset.open = w.id;
     it.innerHTML = `<span class="smi">${w.icon}</span> ${w.title.split(" — ")[0]}`;
     items.insertBefore(it, anchor);
   });
