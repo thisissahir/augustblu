@@ -11,9 +11,10 @@ export function initDesktop() {
   };
   document.querySelectorAll(".desk-icon").forEach((ic) => {
     ic.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (ic.dataset.href) { activateIcon(ic); return; } // shortcut icons launch on a single click
       document.querySelectorAll(".desk-icon").forEach((x) => x.classList.remove("selected"));
       ic.classList.add("selected");
-      e.stopPropagation();
     });
     ic.addEventListener("dblclick", () => activateIcon(ic));
     // single tap opens on touch devices
