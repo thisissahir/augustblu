@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "bookmarks": [],
+  "dailyNote": {
+    "format": "YYYY-MM-DD",
+    "folder": "",
+    "templatePath": ""
+  },
+  "templates": {
+    "folder": ""
+  },
+  "builtinSkills": {
+    "excalidraw": "disabled"
+  }
+}
