@@ -46,4 +46,21 @@ export const ROLLS = [
       "/assets/memories/dallas-2026-05/p1170206.jpg",
     ],
   },
+  {
+    id: "roll-02",
+    name: "2026-06 — Colorado",
+    cover: "/assets/memories/colorado-2026-06/p1170220.jpg",
+    photos: [
+      "/assets/memories/colorado-2026-06/p1170215.jpg",
+      "/assets/memories/colorado-2026-06/p1170220.jpg",
+      "/assets/memories/colorado-2026-06/p1170222.jpg",
+      "/assets/memories/colorado-2026-06/p1170224.jpg",
+      "/assets/memories/colorado-2026-06/p1170226.jpg",
+      "/assets/memories/colorado-2026-06/p1170234.jpg",
+      "/assets/memories/colorado-2026-06/p1170235.jpg",
+      "/assets/memories/colorado-2026-06/p1170241.jpg",
+      "/assets/memories/colorado-2026-06/p1170242.jpg",
+      "/assets/memories/colorado-2026-06/p1170244.jpg",
+    ],
+  },
 ];
