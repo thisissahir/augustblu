@@ -10,4 +10,11 @@ export const TRACKS = [
     cover: "/assets/covers/tinted-windows.jpg",
     src: "/assets/audio/demo-01.mp3",
   },
+  {
+    id: "t2",
+    title: "Somedays (Acoustic)",
+    subtitle: "August Blu — demo",
+    cover: "/assets/covers/u-07.png",
+    src: "/assets/audio/demo-02.mp3",
+  },
 ];
