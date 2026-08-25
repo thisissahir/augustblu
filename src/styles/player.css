@@ -283,6 +283,9 @@ input[type=range].ap-range::-moz-range-thumb{
 .wall-row{ display:flex; align-items:center; gap:10px; }
 .wall-status{ flex:1; font-size:11px; color:#0a5a0a; }
 .wall-hint{ margin:4px 0 0; font-size:11px; line-height:1.45; color:#555; font-style:italic; }
+/* backend offline — the compose box is disabled, so make it read that way */
+.wall-input:disabled{ background:var(--gray-lt,#dfdfdf); color:var(--gray-dark,#808080); cursor:not-allowed; }
+.wall-compose .btn:disabled{ color:var(--gray-dark,#808080); cursor:not-allowed; }
 
 /* image used in place of an emoji icon (desktop glyph, titlebar, start menu) —
    sized to 1em so it matches the surrounding text like an emoji would */
