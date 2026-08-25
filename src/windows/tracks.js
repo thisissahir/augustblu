@@ -17,4 +17,11 @@ export const TRACKS = [
     cover: "/assets/covers/somedays.jpg",
     src: "/assets/audio/demo-02.mp3",
   },
+  {
+    id: "t3",
+    title: "Call Away",
+    subtitle: "August Blu — demo",
+    cover: "/assets/covers/call-away.jpg",
+    src: "/assets/audio/demo-03.mp3",
+  },
 ];
