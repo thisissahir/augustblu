@@ -12,7 +12,9 @@ export function initDesktop() {
   document.querySelectorAll(".desk-icon").forEach((ic) => {
     ic.addEventListener("click", (e) => {
       e.stopPropagation();
-      if (ic.dataset.href) { activateIcon(ic); return; } // shortcut icons launch on a single click
+      // launcher icons (shortcuts + the game) open on a single click; the rest
+      // keep the Win98 select-then-double-click behaviour
+      if (ic.dataset.href || ic.dataset.oneclick) { activateIcon(ic); return; }
       document.querySelectorAll(".desk-icon").forEach((x) => x.classList.remove("selected"));
       ic.classList.add("selected");
     });

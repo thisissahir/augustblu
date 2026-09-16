@@ -253,9 +253,18 @@ export const WINDOWS = [
         <div id="ap-playlist" class="ap-playlist sunken"></div>
       </div>`,
   },
-  // A `link` entry has no window — its icon/Start-menu item navigates away.
   {
-    id: "play", icon: "🎮", title: "Blu Blocks",
-    link: "/play", showOnDesktop: true,
+    // The game runs in a window, not on its own page. Navigating to /play would
+    // unload the desktop and kill the audio mid-track; framed here the demos
+    // keep playing straight through a session of Blu Blocks.
+    // (/play still exists as a standalone shareable route.)
+    id: "blublocks", icon: "🎮", title: "Blu Blocks",
+    width: 780, top: 50, left: 180, showOnDesktop: true, oneClick: true,
+    menu: ["File", "Edit", "View", "Help"],
+    status: ["arrows move · up rotate · space drop", "August Blu"],
+    bodyClass: `class="win-content bb-wrap"`,
+    body: `
+      <iframe class="bb-frame" data-src="/blu-blocks.html" title="Blu Blocks game"></iframe>
+      <p class="bb-note">The demos keep playing while you play. 💙</p>`,
   },
 ];

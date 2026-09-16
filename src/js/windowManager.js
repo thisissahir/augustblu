@@ -2,7 +2,7 @@
    Open / close / minimize / maximize / focus + z-order.
    Emits nothing; other modules call these directly. */
 
-export const WINS = ["demos", "gallery", "memories", "journal", "documents", "antipop", "wall", "instagram", "youtube", "player", "welcome"];
+export const WINS = ["demos", "gallery", "memories", "journal", "documents", "antipop", "wall", "instagram", "youtube", "blublocks", "player", "welcome"];
 
 export const TITLES = {
   demos: "🖥️ Demos",
@@ -14,6 +14,7 @@ export const TITLES = {
   wall: "📌 The Wall",
   instagram: "📸 Instagram",
   youtube: "▶️ YouTube",
+  blublocks: "🎮 Blu Blocks",
   player: "🎵 Media Player",
   welcome: "✴️ Welcome",
 };
@@ -48,6 +49,13 @@ export function focusWin(name) {
 export function openWin(name) {
   const w = el(name);
   if (!w) return;
+  // Hydrate lazily-held embeds (the Blu Blocks game) on first open. Loading the
+  // game up front would run its animation loop on every desktop visit, burning
+  // CPU behind a window nobody opened.
+  w.querySelectorAll("iframe[data-src]").forEach((f) => {
+    f.src = f.dataset.src;
+    delete f.dataset.src;
+  });
   w.classList.add("open");
   openState[name] = true;
   minState[name] = false;

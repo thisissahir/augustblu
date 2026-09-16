@@ -53,6 +53,7 @@ export function renderIcons() {
     const ic = document.createElement("div");
     ic.className = "desk-icon";
     if (w.link) ic.dataset.href = w.link; else ic.dataset.win = w.id;
+    if (w.oneClick) ic.dataset.oneclick = "1"; // launcher-style: opens on a single click
     ic.innerHTML = `<div class="glyph">${w.icon}</div><div class="label">${w.title.split(" — ")[0]}</div>`;
     grid.appendChild(ic);
   });

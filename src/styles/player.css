@@ -292,6 +292,21 @@ input[type=range].ap-range::-moz-range-thumb{
 .ic-img{ height:1em; width:1em; object-fit:contain; vertical-align:-0.18em; }
 .desk-icon .glyph .ic-img{ height:34px; width:34px; vertical-align:0; }
 
+/* ===================== BLU BLOCKS (game window) ===================== */
+/* The game is framed rather than linked, so leaving the desktop never cuts
+   the music. It sizes itself to its frame, so the frame just needs room. */
+.bb-wrap{ padding:4px!important; display:flex; flex-direction:column; }
+.bb-frame{
+  display:block; width:100%; border:0; background:#060A33;
+  /* The game sizes its board off this frame's viewport, so give it as much
+     height as the screen allows. Over 700px wide it uses its roomier desktop
+     layout; narrow (mobile) it falls back to on-screen touch controls. */
+  height:min(620px, calc(100vh - 190px));
+  min-height:430px;
+}
+.bb-note{ margin:5px 2px 0; font-size:11px; line-height:1.45; color:#555; font-style:italic; }
+@media (max-width:600px){ .bb-frame{ height:560px; } }
+
 /* ===================== INSTAGRAM ===================== */
 .ie-bar{
   display:flex; align-items:center; gap:6px; font-size:11px; color:#333;
