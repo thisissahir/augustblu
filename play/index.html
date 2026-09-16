@@ -97,6 +97,43 @@
       border-top:1px solid rgba(38,69,232,0.35);
     }
     .foot a{ color:var(--electric); text-decoration:none; }
+
+    /* ---- music bar (the demos, rotating forever) ---- */
+    .bb-music{
+      display:flex; align-items:center; gap:10px;
+      width:100%; max-width:640px; margin:0 auto 12px;
+      padding:8px 12px;
+      background:rgba(10,17,80,0.75);
+      border:1px solid rgba(38,69,232,0.55);
+      border-radius:6px;
+    }
+    .bb-music-btn,.bb-music-next{
+      border:0; border-radius:4px; cursor:pointer; line-height:1;
+      display:flex; align-items:center; justify-content:center;
+      font-family:inherit;
+    }
+    .bb-music-btn{ background:var(--electric); color:#fff; width:30px; height:28px; font-size:12px; }
+    .bb-music-next{ background:transparent; color:var(--ice); opacity:.65; width:26px; height:28px; font-size:13px; }
+    .bb-music-next:hover{ opacity:1; }
+    .bb-music-title{
+      flex:1; min-width:0; font-size:13px; color:var(--ice);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .bb-music-eq{ display:flex; align-items:flex-end; gap:2px; height:14px; }
+    .bb-music-eq i{ width:3px; height:4px; background:var(--electric); animation:bbEq .9s ease-in-out infinite; }
+    .bb-music-eq i:nth-child(2){ animation-delay:.15s }
+    .bb-music-eq i:nth-child(3){ animation-delay:.3s }
+    @keyframes bbEq{ 0%,100%{height:3px} 50%{height:14px} }
+    /* idle = autoplay was blocked; invite the click that starts it */
+    .bb-music.idle .bb-music-eq i{ animation:none; height:3px; opacity:.35; }
+    .bb-music.idle .bb-music-btn{ animation:bbPulse 1.8s ease-in-out infinite; }
+    @keyframes bbPulse{
+      0%,100%{ box-shadow:0 0 0 0 rgba(38,69,232,.75) }
+      50%{ box-shadow:0 0 0 7px rgba(38,69,232,0) }
+    }
+    @media (prefers-reduced-motion:reduce){
+      .bb-music-eq i,.bb-music.idle .bb-music-btn{ animation:none }
+    }
   </style>
 </head>
 <body>
@@ -112,11 +149,18 @@
   <main>
     <h1 class="page-title">BLU<span>■</span>BLOCKS</h1>
     <p class="sub">A pixel block game in the August Blu universe.</p>
+    <div class="bb-music idle" id="bbMusic">
+      <button class="bb-music-btn" id="bbMusicBtn" aria-label="Play or pause the music">&#9654;</button>
+      <span class="bb-music-eq" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="bb-music-title" id="bbMusicTitle">&#8212;</span>
+      <button class="bb-music-next" id="bbMusicNext" aria-label="Next demo" title="Next demo">&#9197;</button>
+    </div>
     <iframe src="/blu-blocks.html" title="Blu Blocks" style="border:0; width:100%; max-width:640px; height:720px; display:block; margin:0 auto;"></iframe>
   </main>
 
   <footer class="foot">
     © August Blu · <a href="/">augustblu.com</a>
   </footer>
+  <script type="module" src="/src/js/playPage.js"></script>
 </body>
 </html>
