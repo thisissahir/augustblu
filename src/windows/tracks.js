@@ -31,4 +31,11 @@ export const TRACKS = [
     cover: "/assets/covers/thought-of-u.jpg",
     src: "/assets/audio/demo-04.mp3",
   },
+  {
+    id: "t5",
+    title: "Honest",
+    subtitle: "August Blu — master",
+    cover: "/assets/covers/honest.jpg",
+    src: "/assets/audio/demo-05.mp3",
+  },
 ];
