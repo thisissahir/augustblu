@@ -26,8 +26,8 @@ export const TRACKS = [
   },
   {
     id: "t4",
-    title: "August Blu × Blame Adam — Thought of U",
-    subtitle: "collab — master",
+    title: "Thought of U",
+    subtitle: "August Blu × Blame Adam — master",
     cover: "/assets/covers/thought-of-u.jpg",
     src: "/assets/audio/demo-04.mp3",
   },
