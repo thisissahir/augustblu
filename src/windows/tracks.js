@@ -34,7 +34,7 @@ export const TRACKS = [
   {
     id: "t5",
     title: "Honest",
-    subtitle: "August Blu — master",
+    subtitle: "August Blu × Shabeer — master",
     cover: "/assets/covers/honest.jpg",
     src: "/assets/audio/demo-05.mp3",
   },
